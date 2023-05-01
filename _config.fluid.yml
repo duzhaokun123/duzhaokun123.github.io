@@ -10,9 +10,9 @@ navbar:
   ground_glass:
     enable: true
 
-# web_analytics:
-#   enable: true
-#   google: 
+web_analytics:
+  enable: true
+  gtag: G-2QFHFRZW64
 
 footer:
   statistics:

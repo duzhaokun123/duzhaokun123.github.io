@@ -1,0 +1,14 @@
+---
+title: about
+layout: about
+---
+
+部分平台因为历史遗留问题被称为 duzhaokun123
+
+双非一本废物 除了活着什么都不会 <span style="color:#00000000">明明活都活不好</span>
+
+经常写一些没啥用的东西
+
+希望能像他人一样自信
+
+_we still here, as we are not leave yet_

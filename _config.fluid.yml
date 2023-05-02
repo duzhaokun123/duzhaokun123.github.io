@@ -4,6 +4,7 @@ navbar:
     - { key: 'home', link: '/', icon: 'iconfont icon-home-fill' }
     - { key: 'tag', link: '/tags/', icon: 'iconfont icon-tags-fill' }
     - { key: 'about', link: '/about/', icon: 'iconfont icon-user-fill' }
+    - { key: 'project', link: '/project/', name: '项目' }
     - { key: 'tools', link: '/tools/', name: '工具' }
     - { key: 'donate', link: '/donate/', name: '捐赠' }
     # - { key: 'links', link: '/links/', icon: 'iconfont icon-link-fill' }

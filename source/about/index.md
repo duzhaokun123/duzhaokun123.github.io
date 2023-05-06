@@ -1,6 +1,8 @@
 ---
 title: about
 layout: about
+redirect_from:
+    - /about.html
 ---
 
 部分平台因为历史遗留问题被称为 duzhaokun123

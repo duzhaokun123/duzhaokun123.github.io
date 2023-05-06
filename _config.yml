@@ -106,3 +106,10 @@ deploy:
   repo: https://github.com/duzhaokun123/duzhaokun123.github.io
   # example, https://github.com/hexojs/hexojs.github.io
   branch: gh-pages
+
+redirect:
+  enable: true
+
+sitemap:
+  tags: false
+  categories: false

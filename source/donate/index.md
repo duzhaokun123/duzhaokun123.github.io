@@ -2,6 +2,8 @@
 title: 捐赠
 banner_img_height: 40
 banner_mask_alpha: 0.5
+redirect_from:
+    - /donate.html
 ---
 
 <h1>捐赠</h1>

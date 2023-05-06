@@ -36,12 +36,53 @@ about:
     
 
 links:
+  title: '朋友们(部分)'
+  subtitle: '朋友们(部分)
+  按字典顺序排序'
+  banner_img_height: 40
+  banner_mask_alpha: 0.5
   items:
     - {
-      title: 'Fluid Docs',
-      intro: '主题使用指南',
-      link: 'https://hexo.fluid-dev.com/docs/',
-      avatar: '/img/favicon.png'
+      title: 'Chi_Tang',
+      intro: '只是一个普通的初中生罢了',
+      link: 'https://blog.chitang.dev/',
+      avatar: 'https://chitangcos.zyglq.cn/images/avatar.webp'
+    }
+    - {
+      title: 'KimmyXYC',
+      intro: '嗯？谁在那里？',
+      link: 'https://www.kimmyxyc.top/',
+      avatar: 'https://kimcos.zyglq.cn/img/2023/01/05/11-10-28-c9d465352d7e7064b126ebe4576c5de8.jpg'
+    }
+    - {
+      title: 'Purofle',
+      intro: 'Purofle的Blog',
+      link: 'https://blog.archlinux.tech/',
+      avatar: 'https://cos.zyglq.cn/static/link-pic/230124.archlinux.tech.png'
+    }
+    - {
+      title: '笨蛋ovo',
+      intro: '笨蛋小破站',
+      link: 'https://bdovo.cc/',
+      avatar: 'https://obdo.cc/icon'
+    }
+    - {
+      title: '是一刀斩哒♡',
+      intro: '一刀斩の小窝',
+      link: 'https://blog.yidaozhan.top/',
+      avatar: 'https://cos.zyglq.cn/static/link-pic/230124.yidaozhan.top.jfif'
+    }
+    - {
+      title: '易然',
+      intro: '易然的猫窝~',
+      link: 'https://易然.xyz',
+      avatar: 'https://cos.zyglq.cn/static/link-pic/230220.yiran.xyz.jpg'
+    }
+    - {
+      title: '资源管理器博客',
+      intro: '心中有光，对立重伤',
+      link: 'https://www.zyglq.cn/',
+      avatar: 'https://cos.zyglq.cn/static/web-logo.jpg'
     }
 
 favicon: favicon.ico

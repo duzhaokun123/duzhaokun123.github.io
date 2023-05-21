@@ -73,6 +73,12 @@ links:
       avatar: 'https://obdo.cc/icon'
     }
     - {
+      title: '残页',
+      intro: '残页的小博客',
+      link: 'https://blog.canyie.top/',
+      avatar: 'https://blog.canyie.top/data/image/avatar_round_new.png'
+    }
+    - {
       title: '是一刀斩哒♡',
       intro: '一刀斩の小窝',
       link: 'https://blog.yidaozhan.top/',

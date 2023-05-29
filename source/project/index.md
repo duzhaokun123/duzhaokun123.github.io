@@ -16,6 +16,10 @@ Yet Another Mi-FreeForm
 
 小爱课程表暗色支持
 
+## [FuckCainiao](https://github.com/duzhaokun123/FuckCainiao)
+
+菜鸟界面优化和广告移除
+
 ## [DanmakuView](https://github.com/duzhaokun123/DanmakuView)
 
 Android 弹幕视图

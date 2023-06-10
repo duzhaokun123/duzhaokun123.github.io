@@ -26,6 +26,7 @@
     "hexo-theme-fluid": "^1.9.4"
   },
   "devDependencies": {
+    "css-loader": "^6.8.1",
     "hexo-generator-redirect": "github:dimaslanjaka/hexo-generator-redirect"
   }
 }

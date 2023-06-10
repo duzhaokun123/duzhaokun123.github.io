@@ -23,3 +23,7 @@ Yet Another Mi-FreeForm
 ## [DanmakuView](https://github.com/duzhaokun123/DanmakuView)
 
 Android 弹幕视图
+
+## [YA自动记账](https://github.com/duzhaokun123/YAQianjiAuto)
+
+自用的

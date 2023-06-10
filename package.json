@@ -23,10 +23,7 @@
     "hexo-renderer-marked": "^6.0.0",
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
-    "hexo-theme-fluid": "^1.9.4"
-  },
-  "devDependencies": {
-    "css-loader": "^6.8.1",
+    "hexo-theme-fluid": "^1.9.4",
     "hexo-generator-redirect": "github:dimaslanjaka/hexo-generator-redirect"
   }
 }

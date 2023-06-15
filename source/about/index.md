@@ -15,6 +15,8 @@ redirect_from:
 
 希望能像他人一样自信
 
-_we still here, as we are not leave yet_
+<!-- _we still here, as we are not leave yet_ -->
+
+_we still here, as we cannot leave yet_
 
 <!-- _we still here, as if we are not leave yet_ -->

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>VirtualDisplay 实现的小窗 与 toast 窗口 与 systemui 崩溃</title>
+    <link href="/2023/02/23/yamf-toast-systemui-crash.html"/>
+    <url>/2023/02/23/yamf-toast-systemui-crash.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>有人给<a href="https://github.com/sunshine0523/Mi-FreeForm">米窗</a>反馈了这样的问题</p><p><a href="https://github.com/sunshine0523/Mi-FreeForm/issues/20">在特定的情况下使用米窗会导致 systemui 崩溃</a></p><p>具体的崩溃是这样的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs log">02-23 14:44:45.581  6203  6203 E AndroidRuntime: FATAL EXCEPTION: main<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: Process: com.android.systemui, PID: 6203<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: java.lang.IllegalArgumentException: display must not be null<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at android.app.ContextImpl.createDisplayContext(ContextImpl.java:2664)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at com.android.systemui.toast.ToastUI$$ExternalSyntheticLambda0.run(R8$$SyntheticClass:48)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at com.android.systemui.toast.ToastUI.showToast(ToastUI.java:36)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at com.android.systemui.statusbar.CommandQueue$H.handleMessage(CommandQueue.java:712)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at android.os.Handler.dispatchMessage(Handler.java:106)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at android.os.Looper.loopOnce(Looper.java:201)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at android.os.Looper.loop(Looper.java:288)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at android.app.ActivityThread.main(ActivityThread.java:7872)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at java.lang.reflect.Method.invoke(Native Method)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)<br>02-23 14:44:45.581  6203  6203 E AndroidRuntime: at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:946)<br></code></pre></td></tr></table></figure><p>看起来像有 toast 试图在不存在的 display 上显示导致系统崩溃</p><h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>就我个人来说 虽然认为 toast 可以在非主屏幕上显示 应该是用 displayid 变量控制的</p><p>但从来没实践过 因为平时都是用 application 直接创建 toast 的(因为方便 很多框架都是这样操作的 所以几乎没有人反馈这样的问题)</p><p>借此机会 对比了一下使用 activity 和 application 创建 toast 的区别 确实在 <a href="https://github.com/duzhaokun123/YAMF">YAMF</a> 上以相同的原因导致了 systemui 崩溃</p><p>但好在 YAMF 可以方便地修改 flags 加上<code>VIRTUAL_DISPLAY_FLAG_PUBLIC</code>后 toast 正常显示</p><p>所以导致这一问题的一个原因是 toast 试图在非主屏幕上显示</p><p>通过阅读代码 容易发现</p><p>显示 toast 的过程大概是这样的</p><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">Toast.show() -&gt; NotificationManagerService.enqueueToast() -&gt; ToastUI.showToast()<br></code></pre></td></tr></table></figure><h2 id="什么决定了-toast-显示的-display"><a href="#什么决定了-toast-显示的-display" class="headerlink" title="什么决定了 toast 显示的 display"></a>什么决定了 toast 显示的 display</h2><p>简单阅读代码 很容易发现 在<code>android.widget.Toast.show()</code>中</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">displayId</span> <span class="hljs-operator">=</span> mContext.getDisplayId();<br>    <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure><p>displayId 就是使用的 context 的 displayId</p><p>那么 context 的 displayid 是怎么来的</p><p>再次阅读代码 发现在<code>android.app.ContextImpl</code>中</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Display <span class="hljs-title function_">getDisplayNoVerify</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">if</span> (mDisplay == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> mResourcesManager.getAdjustedDisplay(Display.DEFAULT_DISPLAY,mResources);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> mDisplay;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">getDisplayId</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">final</span> <span class="hljs-type">Display</span> <span class="hljs-variable">display</span> <span class="hljs-operator">=</span> getDisplayNoVerify();<br>    <span class="hljs-keyword">return</span> display != <span class="hljs-literal">null</span> ? display.getDisplayId() : Display.DEFAULT_DISPLAY;<br>&#125;<br></code></pre></td></tr></table></figure><p>如果<code>mDisplay</code>为<code>null</code> 则返回默认 display 其 id 为 0<br>否则返回所在的 display 的 id</p><p>在运行时通过反射很容易发现 application 的<code>mDisplay</code>为<code>null</code>而 activity 的为所在 display</p><h2 id="什么导致了找不到-display"><a href="#什么导致了找不到-display" class="headerlink" title="什么导致了找不到 display"></a>什么导致了找不到 display</h2><p>通过上面的测试很容易发现 没有设置<code>VIRTUAL_DISPLAY_FLAG_PUBLIC</code>的 virtualDisplay 会找不到</p><p>具体为什么还没看</p><h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>两个方法</p><ul><li>加上<code>VIRTUAL_DISPLAY_FLAG_PUBLIC</code><ul><li>相对容易 不需要 hook 系统 (但会导致一些 ui 上的变化)</li></ul></li><li>修改 toast 的 displayid 到 0<ul><li>相对麻烦 需要 hook 系统(而且 toast 在错误的屏幕上显示很糟糕 (虽然很少有应用会用 activity 创建 toast 所以其实很多都会在错误的屏幕上显示的))</li></ul></li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>YAMF</tag>
+      
+      <tag>VirtualDisplay</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>西安石油大学(XSYU) 教务系统课表导入小爱课程表</title>
+    <link href="/2023/02/18/new_XSYU_AI_schedule.html"/>
+    <url>/2023/02/18/new_XSYU_AI_schedule.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="0-说明"><a href="#0-说明" class="headerlink" title="0.说明"></a>0.说明</h1><p>小爱课程表的导入解析源码位于 <a href="https://github.com/duzhaokun123/XSYU_AI_schedule">https://github.com/duzhaokun123/XSYU_AI_schedule</a></p><p>使用需要手动提供数据</p><h1 id="1-操作"><a href="#1-操作" class="headerlink" title="1.操作"></a>1.操作</h1><p>就是<code>http://jwxt.xsyu.edu.cn/eams/courseTableForStd!courseTable.action</code>的响应</p><p>粘到像 <a href="https://fars.ee/">https://fars.ee/</a> 这种能提供原始数据的网络剪贴板上</p><p>(因为那个输入框会破坏换行 我又没能力自己搓一个)</p><p>然后把能获取到数据的地址拿去解析就行</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>XSYU</tag>
+      
+      <tag>AI_schedule</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>西安石油大学(XSYU) 教务系统课表导入小爱课程表</title>
+    <link href="/2022/09/27/XSYU_AI_schedule.html"/>
+    <url>/2022/09/27/XSYU_AI_schedule.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>已过时的 使用<a href="/2023/02/18/new_XSYU_AI_schedule.html" title="西安石油大学(XSYU) 教务系统课表导入小爱课程表">西安石油大学(XSYU) 教务系统课表导入小爱课程表</a>代替</p>          </div><h1 id="0-说明"><a href="#0-说明" class="headerlink" title="0.说明"></a>0.说明</h1><p>小爱课程表的导入解析源码位于 <a href="https://github.com/duzhaokun123/XSYU_AI_schedule">https://github.com/duzhaokun123/XSYU_AI_schedule</a></p><p>使用需要手动填写参数 可以在 pc 端浏览器轻松获取</p><h1 id="1-操作"><a href="#1-操作" class="headerlink" title="1.操作"></a>1.操作</h1><p>这里以 chrome 为例 其他浏览器差不多</p><h2 id="1-1-登录教务系统"><a href="#1-1-登录教务系统" class="headerlink" title="1.1 登录教务系统"></a>1.1 登录教务系统</h2><p>这里不多说 自己登陆</p><h2 id="1-2-打开控制台"><a href="#1-2-打开控制台" class="headerlink" title="1.2 打开控制台"></a>1.2 打开控制台</h2><p>按下<code>F12</code> 没有<code>F12</code>的该考虑换个键盘了 或者你自己想办法打开</p><p><img src="/images/XSYU_AI_schedule/webcons.png" alt="wencnos"></p><h2 id="1-3-准备抓包"><a href="#1-3-准备抓包" class="headerlink" title="1.3 准备抓包"></a>1.3 准备抓包</h2><p>在打开的 web 控制抬选择<code>NetWork</code>&#x2F;<code>网络</code>选项卡</p><p><img src="/images/XSYU_AI_schedule/network.png" alt="network"></p><h2 id="1-4-抓包"><a href="#1-4-抓包" class="headerlink" title="1.4 抓包"></a>1.4 抓包</h2><p>在教务系统中选择<code>我的课程</code></p><p>加载完毕后在结果中过滤<code>courseTable.action</code></p><p>选择负载 复制内容待用<br><img src="/images/XSYU_AI_schedule/action.png" alt="action"></p><h2 id="1-5-使用"><a href="#1-5-使用" class="headerlink" title="1.5 使用"></a>1.5 使用</h2><p>在小爱课程表中选择<code>直接请求接口</code>并按说明使用</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>outdated</tag>
+      
+      <tag>XSYU</tag>
+      
+      <tag>AI_schedule</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>LSPatch 处理分包应用</title>
+    <link href="/2022/08/09/lspatch-apks.html"/>
+    <url>/2022/08/09/lspatch-apks.html</url>
+    
+    <content type="html"><![CDATA[<p>最后更新<code>2022.8.9 21:30 UTC+08:00</code></p><p>这篇文章假设你已经看了<a href="/2022/05/06/simple-lspatch-guide.html" title="简单的 LSPatch 使用教程">简单的 LSPatch 使用教程</a></p><h1 id="1-解压文件"><a href="#1-解压文件" class="headerlink" title="1. 解压文件"></a>1. 解压文件</h1><p>apks mapk xapk 或者别的什么分包格式 到随便什么路径</p><p>这里以 微信 play 版 的 xapk 为例</p><p>其他分包格式可能有不同布局 但总体上差不多</p><p><img src="/images/lspatch-apks/wechat.jpg" alt="WeChat xapk"></p><h1 id="2-打包"><a href="#2-打包" class="headerlink" title="2. 打包"></a>2. 打包</h1><p>这里使用 lspatch 应用</p><p>选择应用时选<code>从存储目录选择(多个)apk</code></p><p>在刚才解压的目录选择文件 <strong>长按</strong> 以选择 <strong>多个</strong> 文件</p><p>选择需要的文件 如果不知道选什么 选择 <strong>所有</strong> <code>apk</code>文件</p><details><summary>长图警告</summary><img src="/images/lspatch-apks/select.jpg"></details><p>按右上角<code>选择</code>完成选择 可能会卡一下</p><p>之后按正常流程打包</p><h1 id="3-安装"><a href="#3-安装" class="headerlink" title="3. 安装"></a>3. 安装</h1><p>建议激活<code>Shizuku</code>后通过应用直接安装</p><p>否则 生成的文件在之前选择的路径 有多个 自己想办法安装</p><p>注意: 只安装主 apk 大多数情况下会无法打开应用 这不是 lspatch 的问题</p><h1 id="4-FAQ"><a href="#4-FAQ" class="headerlink" title="4. FAQ"></a>4. FAQ</h1><h2 id="4-1-选择完应用后报错"><a href="#4-1-选择完应用后报错" class="headerlink" title="4.1 选择完应用后报错"></a>4.1 选择完应用后报错</h2><p><img src="/images/lspatch-apks/err.png" alt="错"></p><p>选择了不来自同一分包文件的<code>apk</code></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>lspatch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>简单的 LSPatch 使用教程</title>
+    <link href="/2022/05/06/simple-lspatch-guide.html"/>
+    <url>/2022/05/06/simple-lspatch-guide.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>这只是一个简单的教程<br>最后更新<code>2022.6.1 17:58 UTC+08:00</code></p>          </div><h2 id="1-FFAQ-Fxxking-Frequently-Asked-Question"><a href="#1-FFAQ-Fxxking-Frequently-Asked-Question" class="headerlink" title="-1. FFAQ (Fxxking Frequently Asked Question)"></a>-1. FFAQ (Fxxking Frequently Asked Question)</h2><h3 id="Q0-LSPatch-是什么"><a href="#Q0-LSPatch-是什么" class="headerlink" title="Q0: LSPatch 是什么"></a>Q0: LSPatch 是什么</h3><p>A0:</p><p>LSPosed框架的免 Root 实现, 通过在目标APK中插入dex等整合Xposed API</p><p>Rootless implementation of LSPosed framework, integrating Xposed API by inserting dex and so into the target APK.</p><p>来自<a href="https://github.com/LSPosed/LSPatch">LSPatch 官方仓库</a></p><h3 id="Q1-要-Root-吗"><a href="#Q1-要-Root-吗" class="headerlink" title="Q1: 要 Root 吗"></a>Q1: 要 Root 吗</h3><p>A1: 不要</p><h3 id="Q2-鸿蒙-华为-能用吗"><a href="#Q2-鸿蒙-华为-能用吗" class="headerlink" title="Q2: 鸿蒙(华为)能用吗"></a>Q2: 鸿蒙(华为)能用吗</h3><p>A2: 应该可以</p><!-- ### Q3: 没脑子和/或手行吗A3: 不行 --><h2 id="0-工具与环境"><a href="#0-工具与环境" class="headerlink" title="0. 工具与环境"></a>0. 工具与环境</h2><h3 id="0-1-清单"><a href="#0-1-清单" class="headerlink" title="0.1 清单"></a>0.1 清单</h3><ul><li>脑子和手</li><li>运行 Android 9+ 的设备</li><li>能正常使用的 DocumentsUI(<code>com.google.android.documentsui</code>或<code>com.android.documentsui</code>) (部分魔改系统可能没有, 如 WSA) (<code>管理器打包</code>需要)</li><li>Java 11+ (<code>命令行打包</code>需要)</li><li><code>LSPatch 管理器</code>和<code>lspatch.jar</code></li></ul><h3 id="0-2-获取工具与环境"><a href="#0-2-获取工具与环境" class="headerlink" title="0.2 获取工具与环境"></a>0.2 获取工具与环境</h3><p>这篇文章最后更新于<code>2022.6.1 17:58 UTC+08:00</code>, 当前 <a href="https://github.com/LSPosed/LSPatch">LSPatch 官方仓库</a>的的最新提交是<a href="https://github.com/LSPosed/LSPatch/commit/14bc932249a394000972e18ff9b03933f09d415e"><code>14bc932</code></a></p><h4 id="0-2-1-获取-LSPatch"><a href="#0-2-1-获取-LSPatch" class="headerlink" title="0.2.1 获取 LSPatch"></a>0.2.1 获取 LSPatch</h4><ul><li>前往<a href="https://github.com/LSPosed/LSPatch">LSPatch 官方仓库</a>的<a href="https://github.com/LSPosed/LSPatch/actions/workflows/main.yml"><code>Actions</code>页面</a>下载最新构建的<code>Artifacts</code>中的<code>lspatch-debug</code>或<code>lspatch-release</code> (需要登陆 <a href="https://github.com/">GitHub</a>)</li><li>前往<a href="https://github.com/LSPosed/LSPatch">LSPatch 官方仓库</a>的<a href="https://github.com/LSPosed/LSPatch/releases/latest"><code>Release</code>界面</a>下载</li><li>前往<a href="https://t.me/LSPatchArchives">@LSPatchArchives</a>下载</li></ul><h4 id="0-2-2-获取-Java-11-环境-命令行打包需要"><a href="#0-2-2-获取-Java-11-环境-命令行打包需要" class="headerlink" title="0.2.2 获取 Java 11+ 环境 (命令行打包需要)"></a>0.2.2 获取 Java 11+ 环境 (<code>命令行打包</code>需要)</h4><p>(自己解决, 这里不是教怎么配 Java 环境的)</p><h2 id="1-管理器打包"><a href="#1-管理器打包" class="headerlink" title="1. 管理器打包"></a>1. 管理器打包</h2><h3 id="1-0-准备管理器"><a href="#1-0-准备管理器" class="headerlink" title="1.0 准备管理器"></a>1.0 准备管理器</h3><p>安装下载的压缩包中的<code>manager-*.apk</code></p><p>目前管理器还有很多功能没有实现, 但这不耽误我们打包</p><h3 id="1-1-激活Shizuku-可选"><a href="#1-1-激活Shizuku-可选" class="headerlink" title="1.1 激活Shizuku(可选)"></a>1.1 激活<code>Shizuku</code>(可选)</h3><p><code>Shizuku</code>服务用于管理器保活(目前还没实现)和自动安装, 没有问题不大</p><p>前往<a href="https://shizuku.rikka.app/zh-hans/guide/setup/"><code>Shizuku</code> 用户指南</a>了解如何使用<code>Shizuku</code></p><h3 id="1-2-选择应用并打包安装"><a href="#1-2-选择应用并打包安装" class="headerlink" title="1.2 选择应用并打包安装"></a>1.2 选择应用并打包安装</h3><p>在管理器的<code>管理</code>页面点击右下角<code>+</code></p><p><img src="/images/simple-lspatch-guide/+.png" alt="`+`在哪里"></p><p>首次打包需要选择一个目录输出打包好的文件</p><p><img src="/images/simple-lspatch-guide/where.png" alt="选目录"></p><p>这里随便选一个 <strong>空目录</strong></p><p>选择需要 patch 的应用, 可以选择已安装的或文件, 这里以已安装的Bilibili HD 2 (com.duzhaokun123.bilibilihd2) 为例, 点击应用以开始打包</p><p><img src="/images/simple-lspatch-guide/select.png" alt="选文件"></p><p>之后会看到这样的界面</p><p><img src="/images/simple-lspatch-guide/patch.png" alt="准备 patch"></p><p>可选择<code>本地模式</code>或<code>便携模式</code>, 本地模式需要管理器保活</p><p>选择<code>便携模式</code>需要选择要嵌入模块, 点击<code>嵌入模块</code>以选择</p><p>可选多个, 选完后点击右下角对勾以继续</p><p><img src="/images/simple-lspatch-guide/sleect2.png" alt="选模块"></p><p>最后点击右下角<code>开始修补</code>以打包</p><p>等待完成, 点击<code>安装</code>以安装, 安装需要<code>Shizuku</code>服务, 如果没有需要去之前选择的目录手动安装</p><p>安装会卸载当前安装的应用, 注意备份</p><p><img src="/images/simple-lspatch-guide/fininh.png" alt="完了"></p><h3 id="1-3-后续更新"><a href="#1-3-后续更新" class="headerlink" title="1.3 后续更新"></a>1.3 后续更新</h3><p>更新应用需要重新打包, 如果是<code>便携模式</code>那么更新模块也需要重新打包</p><p>但管理器对已经 patch 过的应用重新打包会出错, 所以建议保留原本应用, 并通过选择文件打包</p><h2 id="2-命令行打包"><a href="#2-命令行打包" class="headerlink" title="2. 命令行打包"></a>2. 命令行打包</h2><h3 id="2-0-准备文件"><a href="#2-0-准备文件" class="headerlink" title="2.0 准备文件"></a>2.0 准备文件</h3><ul><li><code>jar-*.jar</code>(在下载的压缩包中或其他来源中)</li><li>要打包的应用</li><li>要嵌入的模块 (可选)</li></ul><h3 id="2-1-打包"><a href="#2-1-打包" class="headerlink" title="2.1 打包"></a>2.1 打包</h3><p><code>本地模式</code>, 需要运行的设备安装管理器</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">java -jar jar-*.jar &lt;要打包的.apk&gt; --manager -l 2<br></code></pre></td></tr></table></figure><p><code>便携模式</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">java -jar jar-*.jar &lt;要打包的.apk&gt; [-m &lt;模块1.apk&gt; [-m &lt;模块2.apk&gt; ...]] -l 2<br></code></pre></td></tr></table></figure><h3 id="2-2-安装"><a href="#2-2-安装" class="headerlink" title="2.2 安装"></a>2.2 安装</h3><p>输出文件是<code>xx-lv2-lspatched</code>, 自行寻找方法安装</p><h2 id="3-FAQ"><a href="#3-FAQ" class="headerlink" title="3. FAQ"></a>3. FAQ</h2><h3 id="Q1-更新需要卸载吗"><a href="#Q1-更新需要卸载吗" class="headerlink" title="Q1 更新需要卸载吗"></a>Q1 更新需要卸载吗</h3><p>A1: 签名一样就不需要, 为避免签名不同可以自己签名</p><h3 id="Q2-管理器修补失败-提示如图"><a href="#Q2-管理器修补失败-提示如图" class="headerlink" title="Q2 管理器修补失败, 提示如图"></a>Q2 管理器修补失败, 提示如图</h3><p><img src="/images/simple-lspatch-guide/fail.png" alt="失败了"></p><p>A2: 管理器目前不能正常处理修补过的应用</p><p>重新安装回原版或选择文件再试</p><h3 id="Q3-便携模式模块没有正常加载"><a href="#Q3-便携模式模块没有正常加载" class="headerlink" title="Q3 便携模式模块没有正常加载"></a>Q3 <code>便携模式</code>模块没有正常加载</h3><p>A4: 启用 可调试 再试</p><p>Q3.1: 还是不行</p><p>A3.1: 强行停止再试</p><p>Q3.2: 还是不行</p><p>A3.2: 重启再试</p><h3 id="Q4-本地模式模块没有正常加载"><a href="#Q4-本地模式模块没有正常加载" class="headerlink" title="Q4 本地模式模块没有正常加载"></a>Q4 <code>本地模式</code>模块没有正常加载</h3><p>A4: 确定你选择了要加载的模块 (管理 -&gt; 被修补应用 -&gt; Modeule scope)</p><p>Q4.1: 还是不行</p><p>A4.1: 重启再试</p><h3 id="Q5-打包的应用无法分享给微信什么的-提示签名不正确"><a href="#Q5-打包的应用无法分享给微信什么的-提示签名不正确" class="headerlink" title="Q5 打包的应用无法分享给微信什么的, 提示签名不正确"></a>Q5 打包的应用无法分享给微信什么的, 提示签名不正确</h3><p>A5: 因为签名就是和他们预期的不同, 这个无解(除非你能搞到官方签名)</p><h3 id="Q6-打开应用闪退-Android-8"><a href="#Q6-打开应用闪退-Android-8" class="headerlink" title="Q6 打开应用闪退, Android 8-"></a>Q6 打开应用闪退, Android 8-</h3><p>A6: 这个无解, 最低需要 Android 9</p><h3 id="Q7-打开应用闪退-Android-9"><a href="#Q7-打开应用闪退-Android-9" class="headerlink" title="Q7 打开应用闪退, Android 9+"></a>Q7 打开应用闪退, Android 9+</h3><p>A7: 不知道</p><h3 id="Q8-本地模式能不能选加载模块"><a href="#Q8-本地模式能不能选加载模块" class="headerlink" title="Q8 本地模式能不能选加载模块"></a>Q8 <code>本地模式</code>能不能选加载模块</h3><p>A8: 这个功能从<a href="https://github.com/LSPosed/LSPatch/commit/290989b0e6d33df85972c917819576065fac2670"><code>290989b</code></a>开始添加 之前的版本会默认加载所有模块</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>lspatch</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>EhViewer: xiaojieonly VS. NekoInverter</title>
+    <link href="/2021/11/17/ehv-xiaojie-vs-neko.html"/>
+    <url>/2021/11/17/ehv-xiaojie-vs-neko.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-danger">            <p>已过时 已实际体验为准</p>          </div><div class="note note-warning">            <p>这篇文章主要关于本人对这两个版本的看法, 不保证客观公正, 但内容皆为事实</p>          </div><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>这里就不介绍 EhViewer 了, 想了解看 <a href="https://nicebowl.moe/11">https://nicebowl.moe/11</a></p><p>这里主要将 Hippo 不再公开更新后, 两个用户较为广泛的发行版做对比</p><ul><li>xiaojieonly <a href="https://github.com/xiaojieonly/Ehviewer_CN_SXJ">https://github.com/xiaojieonly/Ehviewer_CN_SXJ</a> 以下简称<code>xiaojie</code></li><li>NekoInverter <a href="https://gitlab.com/NekoInverter/EhViewer">https://gitlab.com/NekoInverter/EhViewer</a> 以下简称<code>neko</code></li></ul><p>截止本文章发布(2021.11.17), <code>xiaojie</code>最新版为<code>1.8.8.0(109)</code>, <code>neko</code>最新版为<code>1.7.24.3(1000000)</code></p><p>图有些小, 可以在新标签页打开查看</p><p>以下皆为最新版的对比</p><h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><h3 id="应用本身"><a href="#应用本身" class="headerlink" title="应用本身"></a>应用本身</h3><h4 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h4><p>个人认为<code>neko</code>界面更好看, 对<code>edge-to-edge</code>有处理</p><table><thead><tr><th align="center"><code>xiaojie</code></th><th align="center"><code>neko</code></th></tr></thead><tbody><tr><td align="center"><img src="/images/ehv-xiaojie-vs-neko/xiaojie_home.png" alt="xiaojie_home"></td><td align="center"><img src="/images/ehv-xiaojie-vs-neko/neko_home.png" alt="neko_home"></td></tr><tr><td align="center"><img src="/images/ehv-xiaojie-vs-neko/xiaojie_settings.png" alt="xiaojie_settings"></td><td align="center"><img src="/images/ehv-xiaojie-vs-neko/neko_settings.png" alt="neko_settings"></td></tr></tbody></table><h4 id="原生库"><a href="#原生库" class="headerlink" title="原生库"></a>原生库</h4><p><code>neko</code>上了64位, <code>xiaojie</code>认为没必要 <a href="https://github.com/xiaojieonly/Ehviewer_CN_SXJ/issues/140"><code>xiaojie</code>#140</a></p><table><thead><tr><th align="center"><code>xiaojie</code></th><th align="center"><code>neko</code></th></tr></thead><tbody><tr><td align="center"><img src="/images/ehv-xiaojie-vs-neko/xiaojie_native.png" alt="xiaojie_native"></td><td align="center"><img src="/images/ehv-xiaojie-vs-neko/neko_native.png" alt="neko_native"></td></tr></tbody></table><h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><p><code>xiaojie</code>还没用<a href="https://developer.android.com/guide/topics/providers/document-provider?hl=zh-cn">SAF</a>, 要请求<code>WRITE_EXTERNAL_STORAGE</code></p><table><thead><tr><th align="center"><code>xiaojie</code></th><th align="center"><code>neko</code></th></tr></thead><tbody><tr><td align="center"><img src="/images/ehv-xiaojie-vs-neko/xiaojie_access.png" alt="xiaojie_access"></td><td align="center"><img src="/images/ehv-xiaojie-vs-neko/neko_access.png" alt="neko_access"></td></tr></tbody></table><h4 id="bug"><a href="#bug" class="headerlink" title="bug"></a>bug</h4><ul><li><code>xiaojie</code>的<code>域名前置</code>可能导致和新版本 Clash for Android 冲突导致网络错误的问题 <a href="https://github.com/xiaojieonly/Ehviewer_CN_SXJ/issues/166"><code>xiaojie</code>#116</a>, <code>neko</code>已修复(1.7.23.3 (148))</li><li><code>xiaojie</code>的备份文件与其他客户端不兼容 <a href="https://github.com/xiaojieonly/Ehviewer_CN_SXJ/issues/168"><code>xiaojie</code>#168</a></li></ul><h3 id="作者"><a href="#作者" class="headerlink" title="作者"></a>作者</h3><p><code>xiaojie</code>主要在 GitHub 活动, 不熟</p><p><code>neko</code>在网上能查到<code>neko</code>的黑历史, 且本人被拉黑过, 但本人不主张因人废言</p><h3 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h3><p><code>xiaojie</code>的 issues 界面可以说非常的乱, <code>xiaojie</code>有 <a href="https://t.me/Ehviewer_xiaojieonly_channel">telegram 用户组</a></p><p><code>neko</code>在 GitLab 在国内可能太小众了, 不是很乱, 没有官方用户组</p><h3 id="开源"><a href="#开源" class="headerlink" title="开源"></a>开源</h3><p><code>xiaojie</code><a href="https://github.com/xiaojieonly/Ehviewer_CN_SXJ#%E8%AF%B7%E4%BB%94%E7%BB%86%E4%BA%86%E8%A7%A3%E4%B8%AA%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97%E4%BB%A5%E9%98%B2%E6%AD%A2%E8%B7%B3%E8%BF%87%E6%9F%90%E4%BA%9B%E9%87%8D%E8%A6%81%E7%89%88%E6%9C%AC%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8app%E5%87%BA%E4%BA%8E%E5%AF%B9%E5%88%86%E4%BA%AB%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E8%80%83%E8%99%91%E7%9B%AE%E5%89%8D%E6%9A%82%E4%B8%8D%E6%8F%90%E4%BA%A4%E5%88%86%E4%BA%AB%E5%8A%9F%E8%83%BD%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E4%BB%A3%E7%A0%81%E7%AD%89%E4%B9%8B%E5%90%8E%E5%8A%9F%E8%83%BD%E5%AE%8C%E5%85%A8%E6%88%90%E7%86%9F%E5%90%8E%E5%86%8D%E6%8F%90%E4%BA%A4">并没有完全开源</a></p><p><code>neko</code>完全开源</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>建于以上的对比, 本人选择了<code>neko</code>, 主要是因为界面好看</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>ehviewer</tag>
+      
+      <tag>outdated</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

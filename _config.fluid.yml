@@ -105,3 +105,15 @@ force_https: true
 index:
   slogan:
     text: "狼的 记录并没有什么用的东西的 站点"
+
+code:
+  highlight:
+    highlightjs:
+      style: "github"
+      style_dark: "github-dark"
+
+post:
+  copyright:
+    license: 'BY-SA'
+  prev_next:
+    enable: false

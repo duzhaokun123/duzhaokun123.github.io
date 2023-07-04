@@ -5,6 +5,7 @@ excerpt: 比没有好
 tags:
   - XSYU
   - AI_schedule
+  - outdated
 ---
 
 # 0.说明

@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>西安石油大学(XSYU) 教务系统课表导入小爱课程表</title>
+    <link href="/2023/07/04/new_new_XSYU_AI_schedule.html"/>
+    <url>/2023/07/04/new_new_XSYU_AI_schedule.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="0-说明"><a href="#0-说明" class="headerlink" title="0.说明"></a>0.说明</h1><p>小爱课程表的导入解析源码位于 <a href="https://github.com/duzhaokun123/XSYU_AI_schedule">https://github.com/duzhaokun123/XSYU_AI_schedule</a></p><h1 id="1-操作"><a href="#1-操作" class="headerlink" title="1.操作"></a>1.操作</h1><p>登录点导入就能用了 不用管加载有问题的教务系统界面</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>XSYU</tag>
+      
+      <tag>AI_schedule</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>VirtualDisplay 实现的小窗 与 toast 窗口 与 systemui 崩溃</title>
     <link href="/2023/02/23/yamf-toast-systemui-crash.html"/>
     <url>/2023/02/23/yamf-toast-systemui-crash.html</url>
@@ -38,6 +59,8 @@
       <tag>XSYU</tag>
       
       <tag>AI_schedule</tag>
+      
+      <tag>outdated</tag>
       
     </tags>
     

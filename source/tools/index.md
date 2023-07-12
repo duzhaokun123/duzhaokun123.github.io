@@ -6,4 +6,6 @@ redirect_from:
     - /tools.html
 ---
 
-<p>这里可能有一些工具 但绝不是现在</p>
+## [MMPI 即时出分版](https://duzhaokun123.github.io/MMPI/)
+
+仅供娱乐

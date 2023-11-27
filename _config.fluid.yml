@@ -78,11 +78,17 @@ links:
       link: 'https://blog.canyie.top/',
       avatar: 'https://blog.canyie.top/data/image/avatar_round_new.png'
     }
+#    - {
+#      title: '是一刀斩哒♡',
+#      intro: '一刀斩の小窝',
+#      link: 'https://blog.yidaozhan.top/',
+#      avatar: 'https://cos.zyglq.cn/static/link-pic/230124.yidaozhan.top.jfif'
+#    }
     - {
-      title: '是一刀斩哒♡',
-      intro: '一刀斩の小窝',
-      link: 'https://blog.yidaozhan.top/',
-      avatar: 'https://cos.zyglq.cn/static/link-pic/230124.yidaozhan.top.jfif'
+        title: '千雪',
+        intro: '千雪的咖啡厅',
+        link: 'https://chyk.ink/',
+        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=3526514925&s=640'
     }
     - {
       title: '易然',

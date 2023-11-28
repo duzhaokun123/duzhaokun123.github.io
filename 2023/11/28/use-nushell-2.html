@@ -18,25 +18,36 @@
   <meta name="author" content="狼(o0kam1)">
   <meta name="keywords" content="">
   
-    <meta name="description" content="记录没用的东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="https://duzhaokun123.github.io/archives/2022/index.html">
+    <meta name="description" content="在更多的环境比如 Termux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用更多的 Nushell">
+<meta property="og:url" content="https://duzhaokun123.github.io/2023/11/28/use-nushell-2.html">
 <meta property="og:site_name" content="狼的站点">
-<meta property="og:description" content="记录没用的东西">
+<meta property="og:description" content="在更多的环境比如 Termux">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://duzhaokun123.github.io/2023/11/28/use-nushell-2/termux1.png">
+<meta property="article:published_time" content="2023-11-28T06:47:09.000Z">
+<meta property="article:modified_time" content="2023-11-28T07:07:16.537Z">
 <meta property="article:author" content="狼(o0kam1)">
+<meta property="article:tag" content="nushell">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://duzhaokun123.github.io/2023/11/28/use-nushell-2/termux1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>归档 | 狼的站点</title>
+  <title>用更多的 Nushell | 狼的站点</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
 
 
 
@@ -113,7 +124,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -231,9 +242,49 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="归档"></span>
+            <span id="subtitle" data-typed-text="用更多的 Nushell"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-28 14:47" pubdate>
+          2023年11月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          460 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          4 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
 
         
       </div>
@@ -249,52 +300,175 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 10 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2022</p>
-    
-    <a href="/2022/09/27/XSYU_AI_schedule.html" class="list-group-item list-group-item-action">
-      <time>09-27</time>
-      <div class="list-group-item-title">西安石油大学(XSYU) 教务系统课表导入小爱课程表</div>
-    </a>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">用更多的 Nushell</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <div class="note note-info">
+            <p>上一篇文章 <a target="_blank" rel="noopener" href="http://localhost:4000/2023/11/28/use-nushell-1.html">使用 Nushell 获取好像挺跨平台的 shell 体验</a></p>
+          </div>
+
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>用起来感觉还能用 反正好看 所以给 Termux 和 家里云(Arch Linux) 也装了</p>
+<p>然后配置共享一下</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://termux.dev/en/">Termux</a></li>
+</ul>
+<h3 id="Termux"><a href="#Termux" class="headerlink" title="Termux"></a>Termux</h3><p>carapace 官方源没有 从 <a target="_blank" rel="noopener" href="https://github.com/rsteube/carapace-bin/releases/latest">release</a> 下载</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">pkg install nushell starship<br>wget https://github.com/rsteube/carapace-bin/releases/download/v0.28.4/carapace-bin_0.28.4_linux_arm64.termux.deb<br>pkg install ./carapace-bin_0.28.4_linux_arm64.termux.deb<br></code></pre></td></tr></table></figure>
+
+<h3 id="家里云-Arch-Linux"><a href="#家里云-Arch-Linux" class="headerlink" title="家里云(Arch Linux)"></a>家里云(Arch Linux)</h3><p>用 paru (或者其他 AUR 工具)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">paru -S nushell starship carapace-bin<br></code></pre></td></tr></table></figure>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>这次直接<a target="_blank" rel="noopener" href="https://github.com/duzhaokun123/global_config">共享配置了</a></p>
+<p>建几个软链接就好了</p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/2023/11/28/use-nushell-2/termux1.png" srcset="/img/loading.gif" lazyload alt="termux1"></p>
+<p>各平台统一界面挺好的 :think</p>
+<h2 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h2><ul>
+<li>termux 上至少 git 补全坏的</li>
+<li>termux 上 sudo 缓存检查有问题 毕竟不是正经 sudo</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
   
-    
-    <a href="/2022/08/09/lspatch-apks.html" class="list-group-item list-group-item-action">
-      <time>08-09</time>
-      <div class="list-group-item-title">LSPatch 处理分包应用</div>
-    </a>
   
-    
-    <a href="/2022/05/06/simple-lspatch-guide.html" class="list-group-item list-group-item-action">
-      <time>05-06</time>
-      <div class="list-group-item-title">简单的 LSPatch 使用教程</div>
-    </a>
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nushell/">#nushell</a>
+      
+    </div>
   
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>用更多的 Nushell</div>
+      <div>https://duzhaokun123.github.io/2023/11/28/use-nushell-2.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>狼(o0kam1)</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
     
 
     
@@ -412,6 +586,99 @@
 
 
 
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
 

@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>用更多的 Nushell</title>
+    <link href="/2023/11/28/use-nushell-2.html"/>
+    <url>/2023/11/28/use-nushell-2.html</url>
+    
+    <content type="html"><![CDATA[<div class="note note-info">            <p>上一篇文章 <a href="http://localhost:4000/2023/11/28/use-nushell-1.html">使用 Nushell 获取好像挺跨平台的 shell 体验</a></p>          </div><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>用起来感觉还能用 反正好看 所以给 Termux 和 家里云(Arch Linux) 也装了</p><p>然后配置共享一下</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul><li><a href="https://termux.dev/en/">Termux</a></li></ul><h3 id="Termux"><a href="#Termux" class="headerlink" title="Termux"></a>Termux</h3><p>carapace 官方源没有 从 <a href="https://github.com/rsteube/carapace-bin/releases/latest">release</a> 下载</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">pkg install nushell starship<br>wget https://github.com/rsteube/carapace-bin/releases/download/v0.28.4/carapace-bin_0.28.4_linux_arm64.termux.deb<br>pkg install ./carapace-bin_0.28.4_linux_arm64.termux.deb<br></code></pre></td></tr></table></figure><h3 id="家里云-Arch-Linux"><a href="#家里云-Arch-Linux" class="headerlink" title="家里云(Arch Linux)"></a>家里云(Arch Linux)</h3><p>用 paru (或者其他 AUR 工具)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">paru -S nushell starship carapace-bin<br></code></pre></td></tr></table></figure><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>这次直接<a href="https://github.com/duzhaokun123/global_config">共享配置了</a></p><p>建几个软链接就好了</p><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="/2023/11/28/use-nushell-2/termux1.png" alt="termux1"></p><p>各平台统一界面挺好的 :think</p><h2 id="已知问题"><a href="#已知问题" class="headerlink" title="已知问题"></a>已知问题</h2><ul><li>termux 上至少 git 补全坏的</li><li>termux 上 sudo 缓存检查有问题 毕竟不是正经 sudo</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>nushell</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用 Nushell 获取好像挺跨平台的 shell 体验</title>
     <link href="/2023/11/28/use-nushell-1.html"/>
     <url>/2023/11/28/use-nushell-1.html</url>

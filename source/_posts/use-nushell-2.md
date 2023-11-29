@@ -39,7 +39,7 @@ paru -S nushell starship carapace-bin
 
 ## 配置
 
-这次直接[共享配置了](https://github.com/duzhaokun123/global_config)
+这次直接[共享配置了](https://github.com/duzhaokun123/dot-files)
 
 建几个软链接就好了
 

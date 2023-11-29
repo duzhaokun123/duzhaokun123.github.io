@@ -23,7 +23,7 @@ footer:
     uv_format: "总访客数 {} 人"
 
 about:
-  avatar: /images/face.png
+  avatar: /images/avatar.png
   name: "狼(o0kam1)"
   intro: "大概是废物"
   icons:

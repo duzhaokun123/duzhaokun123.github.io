@@ -1,7 +1,7 @@
 ---
 title: "使用 Nushell 获取好像挺跨平台的 shell 体验"
 date: 2023-11-28 01:19:28
-tags: [nushell]
+tags: [nushell, tools]
 excerpt: "在 Windows 和 Linux 上都能用的 shell"
 ---
 

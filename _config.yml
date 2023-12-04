@@ -43,18 +43,11 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
-highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace: ''
-  wrap: true
-  hljs: false
+syntax_highlighter: prismjs
 prismjs:
-  enable: false
   preprocess: true
   line_number: true
-  tab_replace: ''
+  line_threshold: 0
 marked:
   prependRoot: true
   postAsset: true

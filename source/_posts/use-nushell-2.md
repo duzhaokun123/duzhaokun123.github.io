@@ -1,7 +1,7 @@
 ---
 title: 用更多的 Nushell
 date: 2023-11-28 14:47:09
-tags: [nushell]
+tags: [nushell, tools]
 excerpt: 在更多的环境比如 Termux
 ---
 
@@ -23,7 +23,7 @@ excerpt: 在更多的环境比如 Termux
 
 carapace 官方源没有 从 [release](https://github.com/rsteube/carapace-bin/releases/latest) 下载
 
-```sh
+```bash
 pkg install nushell starship
 wget https://github.com/rsteube/carapace-bin/releases/download/v0.28.4/carapace-bin_0.28.4_linux_arm64.termux.deb
 pkg install ./carapace-bin_0.28.4_linux_arm64.termux.deb

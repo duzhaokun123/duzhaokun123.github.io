@@ -123,3 +123,9 @@ post:
     license: 'BY-SA'
   prev_next:
     enable: false
+
+lazyload:
+  enable: true
+
+search:
+  enable: false

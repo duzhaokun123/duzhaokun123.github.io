@@ -43,11 +43,6 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
-syntax_highlighter: prismjs
-prismjs:
-  preprocess: true
-  line_number: true
-  line_threshold: 0
 marked:
   prependRoot: true
   postAsset: true
@@ -109,3 +104,5 @@ redirect:
 sitemap:
   tags: false
   categories: false
+
+all_minifier: true

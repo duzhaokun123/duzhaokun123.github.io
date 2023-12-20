@@ -51,8 +51,8 @@ dependencies:
     specifier: ^3.0.0
     version: 3.0.0
   hexo-theme-fluid:
-    specifier: ^1.9.4
-    version: 1.9.4(nunjucks@3.2.4)
+    specifier: ^1.9.7
+    version: 1.9.7(nunjucks@3.2.4)
 
 packages:
 
@@ -1315,7 +1315,7 @@ packages:
     dev: false
 
   /fsevents@2.3.3:
-    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==, tarball: https://registry.npmmirror.com/fsevents/-/fsevents-2.3.3.tgz}
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -1697,8 +1697,8 @@ packages:
       - supports-color
     dev: false
 
-  /hexo-theme-fluid@1.9.4(nunjucks@3.2.4):
-    resolution: {integrity: sha512-EaXUh4J6mQZjzKnyNtYHt0U0rIIlGJMsiT+IYHhKXnNrQyaOqMz3H9QC7+o37yzssARiPG3Uc0RtHn3S1DRLoQ==, tarball: https://registry.npmmirror.com/hexo-theme-fluid/-/hexo-theme-fluid-1.9.4.tgz}
+  /hexo-theme-fluid@1.9.7(nunjucks@3.2.4):
+    resolution: {integrity: sha512-rLpUNcs8XhAQZ9Iq8nZ27XbMDtbJs/y35kkpPmebUqV9hV+j3/Yy3tf3zKJW3nzZhTO/8bXYrtNDvmoj1TRmBQ==}
     engines: {node: '>=8.10.0'}
     peerDependencies:
       nunjucks: ^3.0.0

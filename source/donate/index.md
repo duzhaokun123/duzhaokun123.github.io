@@ -30,6 +30,14 @@ redirect_from:
 </details>
 
 <details>
+    <summary>TRC20 (币安)(TRX, USDT ... )</summary>
+    币安支持的, TRC20上的, 都可以<br>
+    TRC20地址 TC7N29EiJaNEjN2Nyt7TKKVtW9qerqv9uE <br>
+    建议使用币安, 站内转账免手续费
+    <img src="/images/donate/b2.png">
+</details>
+
+<details>
     <summary>币安</summary>
     <a href="https://accounts.binance.com/zh-CN/register?ref=SCSMZB20" target="_blank">注册币安</a>(我只开得出反手续费10%, 反佣金10%的, 想反现更高用别人的)<br>
     支付id: 193010443
@@ -37,7 +45,13 @@ redirect_from:
 </details>
 
 <details>
-    <summary>ERC20/BEP20(BSC)/HECO/OEC (各种土狗)</summary>
-    ERC20/BEP20(BSC)/HECO/OEC地址 0x8B54C63a8643ED8800F7739e844929d54b416898
-    <img src="/images/donate/c.png">    
+    <summary>ERC20/BEP20(BSC)/HECO (自托管钱包)</summary>
+    ERC20/BEP20(BSC)/HECO地址 0x8B54C63a8643ED8800F7739e844929d54b416898
+    <img src="/images/donate/c1.png">    
+</details>
+
+<details>
+    <summary>TRC20 (自托管钱包)</summary>
+    TRC20地址 TYgMSrZMVpLV8q2aw38RSq6N2yq3gxaJc7
+    <img src="/images/donate/c2.png">
 </details>

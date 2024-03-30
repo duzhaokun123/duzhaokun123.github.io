@@ -1,0 +1,102 @@
+---
+title: 捐赠
+banner_img_height: 40
+banner_mask_alpha: 0.5
+redirect_from:
+    - /donate.html
+---
+
+<script src="/js/qrcode.min.js"></script>
+<script>
+    function update() {
+        document.getElementById("c2").hidden = !document.getElementById("c1a").checked;
+        document.getElementById("c3").hidden = !document.getElementById("c1b").checked;
+        document.getElementById("c4").hidden = !document.getElementById("c3a").checked;
+        document.getElementById("c5").hidden = !document.getElementById("c3b").checked;
+
+        const address = document.getElementById("address");
+        window.qrcode = window.qrcode || new QRCode(document.getElementById("qr"))
+        const qrcode = window.qrcode
+
+        const clear = () => {
+            address.innerText = "待选择"
+            qrcode.makeCode("invalid")
+            // qrcode.clear()
+        }
+        if (document.getElementById("c1a").checked) {
+            if (document.getElementById("c2a").checked) {
+                address.innerText = "微信";
+                qrcode.makeCode("wxp://f2f0MDdHB7ilGpU5P6TZ5ezZvokmTiUWTwzl")
+            } else if (document.getElementById("c2b").checked) {
+                address.innerHTML = "<a href=\"https://qr.alipay.com/tsx12992cjpljylwkf9qee5\" target=\"_blank\">点击打开支付宝</a>";
+                qrcode.makeCode("https://qr.alipay.com/tsx12992cjpljylwkf9qee5")
+            } else {
+                clear()
+            }
+        } else if (document.getElementById("c1b").checked) {
+            if (document.getElementById("c3a").checked) {
+                if (document.getElementById("c4a").checked) {
+                    address.innerText = "支付 id 193010443"
+                    qrcode.makeCode("https://app.binance.com/qr/dplk20202918eac746ab936c28832a4ac3fd")
+                } else if (document.getElementById("c4b").checked) {
+                    address.innerText = "UID 234772868016283648"
+                    qrcode.makeCode("234772868016283648")
+                } else {
+                    clear()
+                }
+            } else if (document.getElementById("c3b").checked) {
+                if (document.getElementById("c5a").checked) {
+                    address.innerText = "EVM 0x8B54C63a8643ED8800F7739e844929d54b416898"
+                    qrcode.makeCode("0x8B54C63a8643ED8800F7739e844929d54b416898")
+                } else if (document.getElementById("c5b").checked) {
+                    address.innerText = "TRON TYgMSrZMVpLV8q2aw38RSq6N2yq3gxaJc7"
+                    qrcode.makeCode("TYgMSrZMVpLV8q2aw38RSq6N2yq3gxaJc7")
+                } else if (document.getElementById("c5c").checked) {
+                    address.innerText = "SOL 78xKMt3Rrw14GgZo4dQF7toQpXuyPkSEyVn9bZ9amaCA"
+                    qrcode.makeCode("78xKMt3Rrw14GgZo4dQF7toQpXuyPkSEyVn9bZ9amaCA")
+                } else {
+                    clear()
+                }
+            } else {
+                clear()
+            }
+        } else {
+            clear()
+        }
+    };
+
+
+</script>
+
+<h1>捐赠</h1>
+<div>
+    捐赠方式<br>
+    <input type="radio" name="c1" id="c1a" onclick="update()"> <label for="c1a">法币 (CNY)</label>
+    <input type="radio" name="c1" id="c1b" onclick="update()"> <label for="c1b">虚拟币</label>
+    <div id="c2" hidden="hidden">
+        法币方式<br>
+        <input type="radio" name="c2" id="c2a" onclick="update()"> <label for="c2a">微信</label>
+        <input type="radio" name="c2" id="c2b" onclick="update()"> <label for="c2b">支付宝</label>
+    </div>
+    <div id="c3" hidden="hidden">
+        虚拟币方式<br>
+        <input type="radio" name="c3" id="c3a" onclick="update()"> <label for="c3a">交易所内部</label>
+        <input type="radio" name="c3" id="c3b" onclick="update()"> <label for="c3b">链上</label>
+        <div id="c4" hidden="hidden">
+            交易所<br>
+            <input type="radio" name="c4" id="c4a" onclick="update()"> <label for="c4a">币安 (BN)</label>
+            <input type="radio" name="c4" id="c4b" onclick="update()"> <label for="c4b">欧易 (OKX)</label>
+        </div>
+        <div id="c5" hidden="hidden">
+            链上<br>
+            <input type="radio" name="c5" id="c5a" onclick="update()"> <label for="c5a">EVM 链 (ETH, BSC, ...)</label>
+            <input type="radio" name="c5" id="c5b" onclick="update()"> <label for="c5b">TRON</label>
+            <input type="radio" name="c5" id="c5c" onclick="update()"> <label for="c5c">SOL</label>
+        </div>
+    </div>
+</div>
+
+<div>
+    地址: <div id="address">待选择</div>
+    <div id="qr"></div>
+</div>

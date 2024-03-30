@@ -54,6 +54,9 @@ redirect_from:
                 } else if (document.getElementById("c5c").checked) {
                     address.innerText = "SOL 78xKMt3Rrw14GgZo4dQF7toQpXuyPkSEyVn9bZ9amaCA"
                     qrcode.makeCode("78xKMt3Rrw14GgZo4dQF7toQpXuyPkSEyVn9bZ9amaCA")
+                } else if (document.getElementById("c5d").checked) {
+                    address.innerText = "TON UQBj28qGaZ9FAx220IzzbggFv0fW4_fsCrO-jmH61aWiu4to"
+                    qrcode.makeCode("UQBj28qGaZ9FAx220IzzbggFv0fW4_fsCrO-jmH61aWiu4to")
                 } else {
                     clear()
                 }
@@ -92,6 +95,7 @@ redirect_from:
             <input type="radio" name="c5" id="c5a" onclick="update()"> <label for="c5a">EVM 链 (ETH, BSC, ...)</label>
             <input type="radio" name="c5" id="c5b" onclick="update()"> <label for="c5b">TRON</label>
             <input type="radio" name="c5" id="c5c" onclick="update()"> <label for="c5c">SOL</label>
+            <input type="radio" name="c5" id="c5d" onclick="update()"> <label for="c5d">TON</label>
         </div>
     </div>
 </div>

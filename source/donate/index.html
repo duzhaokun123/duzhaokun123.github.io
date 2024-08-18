@@ -36,7 +36,7 @@ redirect_from:
         } else if (document.getElementById("c1b").checked) {
             if (document.getElementById("c3a").checked) {
                 if (document.getElementById("c4a").checked) {
-                    address.innerText = "支付 id 193010443"
+                    address.innerText = "币安 id 165778635"
                     qrcode.makeCode("https://app.binance.com/qr/dplk20202918eac746ab936c28832a4ac3fd")
                 } else if (document.getElementById("c4b").checked) {
                     address.innerText = "UID 234772868016283648"
@@ -60,6 +60,9 @@ redirect_from:
                 } else if (document.getElementById("c5d").checked) {
                     address.innerText = "TON UQBj28qGaZ9FAx220IzzbggFv0fW4_fsCrO-jmH61aWiu4to"
                     qrcode.makeCode("UQBj28qGaZ9FAx220IzzbggFv0fW4_fsCrO-jmH61aWiu4to")
+                } else if (document.getElementById("c5e").checked) {
+                    address.innerText = "BTC(SegWit) bc1q6havxy4s49ytmjdf0fn9k5pcdsxgkdwnn50hd6"
+                    qrcode.makeCode("bc1q6havxy4s49ytmjdf0fn9k5pcdsxgkdwnn50hd6")
                 } else {
                     clear()
                 }
@@ -100,6 +103,7 @@ redirect_from:
             <input type="radio" name="c5" id="c5b" onclick="update()"> <label for="c5b">TRON</label>
             <input type="radio" name="c5" id="c5c" onclick="update()"> <label for="c5c">SOL</label>
             <input type="radio" name="c5" id="c5d" onclick="update()"> <label for="c5d">TON</label>
+            <input type="radio" name="c5" id="c5e" onclick="update()"> <label for="c5e">BTC(SegWit)</label>
         </div>
     </div>
 </div>

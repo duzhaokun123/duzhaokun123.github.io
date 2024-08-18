@@ -1,0 +1,64 @@
+---
+title: CJK 统一文字编码字形测试
+banner_img_height: 25
+---
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td {
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    span {
+        font-size: 20px;
+    }
+</style>
+<table>
+    <tr>
+        <td><label for="input">输入</label></td>
+        <td><input type="text" id="input"></td>
+    </tr>
+    <tr>
+        <td>大陆 (zh-cn)</td>
+        <td><span lang="zh-cn" id="output-1"></span></td>
+    </tr>
+    <tr>
+        <td>台湾 (zh-tw)</td>
+        <td><span lang="zh-tw" id="output-2"></span></td>
+    </tr>
+    <tr>
+        <td>香港 (zh-hk)</td>
+        <td><span lang="zh-hk" id="output-3"></span></td>
+    </tr>
+    <tr>
+        <td>日文 (ja)</td>
+        <td><span lang="ja" id="output-4"></span></td>
+    </tr>
+    <tr>
+        <td>韩文 (ko)</td>
+        <td><span lang="ko" id="output-5"></span></td>
+    </tr>
+    <tr>
+        <td>越文 (vi-hani)</td>
+        <td><span lang="vi-hani" id="output-6"></span></td>
+    </tr>
+    <script>
+        document.getElementById("input").oninput = function () {
+            const input = document.getElementById("input").value;
+            document.getElementById("output-1").innerText = input;
+            document.getElementById("output-2").innerText = input;
+            document.getElementById("output-3").innerText = input;
+            document.getElementById("output-4").innerText = input;
+            document.getElementById("output-5").innerText = input;
+            document.getElementById("output-6").innerText = input;
+        }
+    </script>
+</table>

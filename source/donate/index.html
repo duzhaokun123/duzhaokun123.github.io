@@ -44,6 +44,9 @@ redirect_from:
                 } else if (document.getElementById("c4c").checked) {
                     address.innerText = "UID 09678611"
                     qrcode.makeCode("09678611")
+                } else if (document.getElementById("c4d").checked) {
+                    address.innerText = "UID 6718689265"
+                    qrcode.makeCode("6718689265")
                 } else {
                     clear()
                 }
@@ -96,6 +99,7 @@ redirect_from:
             <input type="radio" name="c4" id="c4a" onclick="update()"> <label for="c4a">币安 (BN)</label>
             <input type="radio" name="c4" id="c4b" onclick="update()"> <label for="c4b">欧易 (OKX)</label>
             <input type="radio" name="c4" id="c4c" onclick="update()"> <label for="c4c">抹茶 (MEXC)</label>
+            <input type="radio" name="c4" id="c4d" onclick="update()"> <label for="c4d">Bitget</label>
         </div>
         <div id="c5" hidden="hidden">
             链上<br>

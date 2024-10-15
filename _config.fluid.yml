@@ -129,3 +129,6 @@ lazyload:
 
 search:
   enable: false
+
+banner:
+  width_height_ratio: 0

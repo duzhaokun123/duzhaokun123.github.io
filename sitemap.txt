@@ -1,3 +1,4 @@
+https://duzhaokun123.github.io/about/index.html
 https://duzhaokun123.github.io/donate/index.html
 https://duzhaokun123.github.io/tools/cjk.html
 https://duzhaokun123.github.io/tools/index.html
@@ -11,11 +12,10 @@ https://duzhaokun123.github.io/2023/11/28/use-nushell-2.html
 https://duzhaokun123.github.io/2023/08/11/yayamf_dev_1.html
 https://duzhaokun123.github.io/2023/02/18/new_XSYU_AI_schedule.html
 https://duzhaokun123.github.io/2023/07/04/new_new_XSYU_AI_schedule.html
-https://duzhaokun123.github.io/about/index.html
 https://duzhaokun123.github.io/project/index.html
 https://duzhaokun123.github.io/2022/05/06/simple-lspatch-guide.html
 https://duzhaokun123.github.io/2023/02/23/yamf-toast-systemui-crash.html
+https://duzhaokun123.github.io/2022/08/09/lspatch-apks.html
 https://duzhaokun123.github.io/2022/09/27/XSYU_AI_schedule.html
 https://duzhaokun123.github.io/2021/11/17/ehv-xiaojie-vs-neko.html
-https://duzhaokun123.github.io/2022/08/09/lspatch-apks.html
 https://duzhaokun123.github.io/

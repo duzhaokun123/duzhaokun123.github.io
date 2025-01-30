@@ -4,13 +4,10 @@ banner_img_height: 40
 banner_mask_alpha: 0.5
 redirect_from:
     - /donate.html
-description: 收 CNY EUR BTC ETH USDT USDC ...
+description: 收 CNY EUR USD BTC ETH USDT USDC ...
 ---
 
 <script src="/js/qrcode.min.js"></script>
-<script async
-  src="https://js.stripe.com/v3/buy-button.js">
-</script>
 <script>
     function update() {
         document.getElementById("c2").hidden = !document.getElementById("c1a").checked;
@@ -36,12 +33,9 @@ description: 收 CNY EUR BTC ETH USDT USDC ...
                 address.innerHTML = "<a href=\"https://qr.alipay.com/tsx12992cjpljylwkf9qee5\" target=\"_blank\">点击打开支付宝</a>";
                 qrcode.makeCode("https://qr.alipay.com/tsx12992cjpljylwkf9qee5")
             } else if (document.getElementById("c2c").checked) {
-                address.innerHTML = "<stripe-buy-button\n" +
-                    "  buy-button-id=\"buy_btn_1QADohRpI9pQVO66zDR0Htxl\"\n" +
-                    "  publishable-key=\"pk_live_51Q8z9mRpI9pQVO66rTDedoyn6DhFEfWT2Z3yI7wrpELAGKFzf4GbTzbijIgKJirfMy4cmwzDcXsTiMZUX7x7U2md00gojsGsEC\"\n" +
-                    ">\n" +
-                    "</stripe-buy-button>";
-                qrcode.makeCode("https://buy.stripe.com/00g6oV2Tn1yQ6Tm8wx")
+                address.innerText = "账户 14101\n" +
+                    "底下的 QR 码不是 EPC QR 码";
+                qrcode.makeCode("https://fiat24.io/")
             } else {
                 clear()
             }
@@ -73,8 +67,8 @@ description: 收 CNY EUR BTC ETH USDT USDC ...
                     address.innerText = "SOL 78xKMt3Rrw14GgZo4dQF7toQpXuyPkSEyVn9bZ9amaCA"
                     qrcode.makeCode("78xKMt3Rrw14GgZo4dQF7toQpXuyPkSEyVn9bZ9amaCA")
                 } else if (document.getElementById("c5d").checked) {
-                    address.innerText = "TON UQBj28qGaZ9FAx220IzzbggFv0fW4_fsCrO-jmH61aWiu4to"
-                    qrcode.makeCode("UQBj28qGaZ9FAx220IzzbggFv0fW4_fsCrO-jmH61aWiu4to")
+                    address.innerText = "TON UQBistAac75gNGdD6trgqK3m9Tg92gm3XAx3gS4U9noaT4zv"
+                    qrcode.makeCode("UQBistAac75gNGdD6trgqK3m9Tg92gm3XAx3gS4U9noaT4zv")
                 } else if (document.getElementById("c5e").checked) {
                     address.innerText = "BTC(SegWit) bc1q6havxy4s49ytmjdf0fn9k5pcdsxgkdwnn50hd6"
                     qrcode.makeCode("bc1q6havxy4s49ytmjdf0fn9k5pcdsxgkdwnn50hd6")
@@ -102,7 +96,7 @@ description: 收 CNY EUR BTC ETH USDT USDC ...
         法币方式<br>
         <input type="radio" name="c2" id="c2a" onclick="update()"> <label for="c2a">微信 (CNY)</label>
         <input type="radio" name="c2" id="c2b" onclick="update()"> <label for="c2b">支付宝 (CNY)</label>
-        <input type="radio" name="c2" id="c2c" onclick="update()"> <label for="c2c">Stripe (EUR 当地法币)</label>
+        <input type="radio" name="c2" id="c2c" onclick="update()"> <label for="c2c">Fiat24 (EUR CHF USD CNY)</label>
     </div>
     <div id="c3" hidden="hidden">
         虚拟币方式<br>

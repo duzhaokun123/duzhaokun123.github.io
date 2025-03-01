@@ -106,3 +106,8 @@ sitemap:
   categories: false
 
 all_minifier: true
+image_minifier:
+  enable: true
+  interlaced: false
+  multipass: false
+  optimizationLevel: 7

@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "command": "pnpm run server",
+            "name": "server",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "command": "pnpm run deploy",
+            "name": "deploy",
+            "request": "launch",
+            "type": "node-terminal",
+        }
+    ]
+}

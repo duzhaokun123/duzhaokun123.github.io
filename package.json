@@ -6,14 +6,15 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo clean && hexo deploy",
-    "server": "hexo server --config _config.yml,_config.dev.yml"
+    "server": "hexo server --config _config.yml,_config.dev.yml",
+    "server-release": "hexo server --config _config.yml"
   },
   "hexo": {
     "version": "7.3.0"
   },
   "dependencies": {
-    "css": "^3.0.0",
     "hexo": "^7.3.0",
+    "hexo-admonition": "^1.1.2",
     "hexo-all-minifier": "^0.5.7",
     "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",

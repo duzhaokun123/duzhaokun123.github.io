@@ -3,5 +3,16 @@
         {
             "path": "."
         }
-    ]
+    ],
+    "settings": {
+        "statusbar_command.commands": [
+        {
+            "text": "$(run) server",
+            "tooltip": "Start a local server",
+            "alignment": "right",
+            "command": "workbench.action.debug.run",
+            "color": "#23ae43",
+        }
+    ],
+    }
 }

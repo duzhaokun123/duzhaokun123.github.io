@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://duzhaokun123.github.io/donate/index.html</loc>
+    
+    <lastmod>2025-08-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://duzhaokun123.github.io/about/index.html</loc>
     
     <lastmod>2025-07-06</lastmod>
@@ -29,15 +38,6 @@
   </url>
   
   <url>
-    <loc>https://duzhaokun123.github.io/tools/cjk.html</loc>
-    
-    <lastmod>2025-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://duzhaokun123.github.io/tools/index.html</loc>
     
     <lastmod>2025-07-06</lastmod>
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://duzhaokun123.github.io/donate/index.html</loc>
+    <loc>https://duzhaokun123.github.io/tools/cjk.html</loc>
     
     <lastmod>2025-07-06</lastmod>
     
@@ -155,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://duzhaokun123.github.io/2023/12/20/relieve-broken-wlan.html</loc>
+    <loc>https://duzhaokun123.github.io/2024/03/21/relieve-broken-wlan-3.html</loc>
     
     <lastmod>2025-07-06</lastmod>
     
@@ -164,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://duzhaokun123.github.io/2024/03/21/relieve-broken-wlan-3.html</loc>
+    <loc>https://duzhaokun123.github.io/2023/12/20/relieve-broken-wlan.html</loc>
     
     <lastmod>2025-07-06</lastmod>
     
@@ -238,7 +238,7 @@
 
   <url>
     <loc>https://duzhaokun123.github.io/</loc>
-    <lastmod>2025-07-06</lastmod>
+    <lastmod>2025-08-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

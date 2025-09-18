@@ -3,11 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate --config _config.yml,_config.dev.yml",
+    "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo clean && hexo deploy",
-    "server": "hexo server --config _config.yml,_config.dev.yml",
-    "server-release": "hexo server --config _config.yml"
+    "server": "hexo server"
   },
   "hexo": {
     "version": "8.0.0"

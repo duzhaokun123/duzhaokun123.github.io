@@ -53,6 +53,9 @@ description: 收 CNY EUR USD BTC ETH USDT USDC ...
                 } else if (document.getElementById("c4d").checked) {
                     address.innerText = "UID 6718689265"
                     qrcode.makeCode("6718689265")
+                } else if (document.getElementById("c4e").checked) {
+                    address.innerHTML = "<a href=\"https://www.okx.com/ul/IVtWVFq\" target=\"_blank\">点击打开 OKX Pay</a>"
+                    qrcode.makeCode("https://www.okx.com/ul/IVtWVFq")
                 } else {
                     clear()
                 }
@@ -108,6 +111,7 @@ description: 收 CNY EUR USD BTC ETH USDT USDC ...
             <input type="radio" name="c4" id="c4b" onclick="update()"> <label for="c4b">欧易 (OKX)</label>
             <input type="radio" name="c4" id="c4c" onclick="update()"> <label for="c4c">抹茶 (MEXC)</label>
 <!--            <input type="radio" name="c4" id="c4d" onclick="update()"> <label for="c4d">Bitget</label>-->
+            <input type="radio" name="c4" id="c4e" onclick="update()"> <label for="c4e">OKX Pay</label>
         </div>
         <div id="c5" hidden="hidden">
             链上<br>

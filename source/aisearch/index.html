@@ -1,0 +1,27 @@
+---
+title: AI 搜索
+banner_img_height: 20
+banner_mask_alpha: 0.5
+description: 不知道有什么用
+---
+
+<p>Cloudflare 的 AI 搜索 (AutoRAG)</p>
+
+<!-- Add css on head -->
+<link rel="stylesheet" href="https://shrill-queen-fd17-nlweb.o0kam1.workers.dev/nlweb-dropdown-chat.css">
+<link rel="stylesheet" href="https://shrill-queen-fd17-nlweb.o0kam1.workers.dev/common-chat-styles.css">
+
+<!-- Add container on body -->
+<div id="docs-search-container"></div>
+
+<!-- Include JavaScript -->
+<script type="module">
+    import { NLWebDropdownChat } from 'https://shrill-queen-fd17-nlweb.o0kam1.workers.dev/nlweb-dropdown-chat.js';
+
+    const chat = new NLWebDropdownChat({
+        containerId: 'docs-search-container',
+        site: 'https://shrill-queen-fd17-nlweb.o0kam1.workers.dev',
+        placeholder: 'Search for docs...',
+        endpoint: 'https://shrill-queen-fd17-nlweb.o0kam1.workers.dev'
+    });
+</script>

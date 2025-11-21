@@ -44,12 +44,15 @@ description: 收 CNY EUR USD BTC ETH USDT USDC ...
                   "底下的 QR 码不是 EPC QR 码"
                 qrcode.makeCode(`{"email":"duzhaokun2@gmail.com"}`)
             } else if (document.getElementById("c2e").checked) {
-                address.innerHTML = `<stripe-buy-button
-  buy-button-id="buy_btn_1SVja7G6fOJDzkSMpT1E8wA3"
-  publishable-key="pk_live_51SViS2G6fOJDzkSMrLZqZ5EoQ9fhyOLvAtu2LgB6aUn7zwLrWPEOiYAUuFaDQyLS2HBqsW9BRZzcfjchdRGWKax600pZfmHpNB"
->
-</stripe-buy-button>`
-                qrcode.makeCode("https://donate.stripe.com/cNi4gz6ZbeXt8Tz3vD53O00")
+                address.innerHTML =
+                  `
+                    <stripe-buy-button
+                      buy-button-id="buy_btn_1SVnhsKAPOYkcDwN6MUz437L"
+                      publishable-key="pk_test_51SPwzoKAPOYkcDwN3ottEMJLDoZ0XruKOTkuxjocg9MTfK93XYHbl1etuRF7TmPrHbyM80cX0dvU3u9DaT5EMDMA00S8YMqUMu"
+                    >
+                    </stripe-buy-button>
+                  `
+                qrcode.makeCode("https://donate.stripe.com/test_9B628s6OS0AWbkc8t7fMA00")
             }
             else {
                 clear()

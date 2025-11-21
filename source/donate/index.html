@@ -8,6 +8,9 @@ description: 收 CNY EUR USD BTC ETH USDT USDC ...
 ---
 
 <script src="/js/qrcode.min.js"></script>
+<script async
+        src="https://js.stripe.com/v3/buy-button.js">
+</script>
 <script>
     function update() {
         document.getElementById("c2").hidden = !document.getElementById("c1a").checked;
@@ -36,7 +39,19 @@ description: 收 CNY EUR USD BTC ETH USDT USDC ...
                 address.innerText = "账户 14101\n" +
                     "底下的 QR 码不是 EPC QR 码";
                 qrcode.makeCode("https://fiat24.io/")
-            } else {
+            } else if (document.getElementById("c2d").checked) {
+                address.innerText = "邮箱 duzhaokun2@gmail.com\n" +
+                  "底下的 QR 码不是 EPC QR 码"
+                qrcode.makeCode(`{"email":"duzhaokun2@gmail.com"}`)
+            } else if (document.getElementById("c2e").checked) {
+                address.innerHTML = `<stripe-buy-button
+  buy-button-id="buy_btn_1SVja7G6fOJDzkSMpT1E8wA3"
+  publishable-key="pk_live_51SViS2G6fOJDzkSMrLZqZ5EoQ9fhyOLvAtu2LgB6aUn7zwLrWPEOiYAUuFaDQyLS2HBqsW9BRZzcfjchdRGWKax600pZfmHpNB"
+>
+</stripe-buy-button>`
+                qrcode.makeCode("https://donate.stripe.com/cNi4gz6ZbeXt8Tz3vD53O00")
+            }
+            else {
                 clear()
             }
         } else if (document.getElementById("c1b").checked) {
@@ -100,6 +115,8 @@ description: 收 CNY EUR USD BTC ETH USDT USDC ...
         <input type="radio" name="c2" id="c2a" onclick="update()"> <label for="c2a">微信 (CNY)</label>
         <input type="radio" name="c2" id="c2b" onclick="update()"> <label for="c2b">支付宝 (CNY)</label>
         <input type="radio" name="c2" id="c2c" onclick="update()"> <label for="c2c">Fiat24 (EUR CHF USD CNY)</label>
+        <input type="radio" name="c2" id="c2d" onclick="update()"> <label for="c2d">N26 (EUR)</label>
+        <input type="radio" name="c2" id="c2e" onclick="update()"> <label for="c2e">Stripe (EUR)</label>
     </div>
     <div id="c3" hidden="hidden">
         虚拟币方式<br>

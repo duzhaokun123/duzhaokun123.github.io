@@ -1,0 +1,243 @@
+---
+title: 生成像素画
+banner_img_height: 25
+---
+
+<style>
+#consoleLog {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 9999;
+    border-left: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+#consoleLog.collapsed {
+    width: 40px;
+}
+
+#consoleLog.collapsed #consoleToggle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 10px 5px;
+    height: auto;
+    width: 40px;
+    border-bottom: none;
+    border-right: 1px solid #333;
+    border-top: 1px solid #333;
+}
+
+#consoleToggle {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    border-bottom: 1px solid #333;
+}
+
+#consoleContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 12px;
+    white-space: pre;
+    overflow-wrap: break-word;
+}
+</style>
+
+<script type="module">
+    import {loadPyodide, version as pyodideVersion} from "https://cdn.jsdelivr.net/npm/pyodide/pyodide.mjs"
+
+    async function initPyodide() {
+        console.log(`Pyodide version: ${pyodideVersion}`);
+        if (window.pyodide) {
+            console.log("Pyodide is already initialized.");
+            return;
+        }
+        let pyodide = await loadPyodide({
+            fullStdLib: true,
+            indexURL: `https://cdn.jsdelivr.net/pyodide/v${pyodideVersion}/full/`,
+            stdout: (msg) => console.log(`[Pyodide] ${msg}`),
+            stderr: (msg) => console.error(`[Pyodide Error] ${msg}`),
+        });
+        await pyodide.loadPackage("micropip");
+        const micropip = pyodide.pyimport("micropip");
+        await micropip.install("opencv-python")
+        await micropip.install("Pillow")
+        await micropip.install("numpy")
+        console.log("Loading pixel.py script...");
+        const pixel_py = await fetch("./pixel.py").then((response) => response.text());
+        pyodide.runPython(pixel_py)
+        console.log("Loaded pixel.py script.");
+        console.log("Pyodide initialized and packages installed.");
+        document.getElementById("toolContainer").style.display = 'block';
+
+        window.pyodide = pyodide;
+    }
+
+    async function makeDot() {
+        if (window.pyodide === undefined) {
+            console.log("Error: Pyodide is not initialized. Please initialize it first.");
+            return;
+        }
+        const fileInput = document.getElementById("fileInput");
+        if (fileInput.files.length === 0) {
+            console.log("Error: No file selected. Please select an image file.");
+            return;
+        }
+        console.log("Running make_dot()...");
+        const file = fileInput.files[0];
+        document.getElementById("inputImage").src = URL.createObjectURL(file);
+
+        const arrayBuffer = await file.arrayBuffer();
+        const inputImageData = new Uint8Array(arrayBuffer);
+        window.pyodide.FS.writeFile("/tmp/input_image", inputImageData);
+        const colorSize = parseInt(document.getElementById("colorSize").value);
+        const dotSize = parseInt(document.getElementById("dotSize").value);
+        window.pyodide.runPython("make_dot")(colorSize, dotSize);
+        console.log("make_dot() completed.");
+
+        const outputImageData = window.pyodide.FS.readFile("/tmp/output_image.png");
+        const blob = new Blob([outputImageData], {type: "image/png"});
+        document.getElementById("outputImage").src = URL.createObjectURL(blob);
+
+        document.getElementById("outputImage").style.display = 'block';
+        document.getElementById("inputImage").style.display = 'none';
+
+        const colorListStr = window.pyodide.FS.readFile("/tmp/output_colors.json", {encoding: "utf8"});
+        const colorList = JSON.parse(colorListStr);
+        const colorListDiv = document.getElementById("colorList");
+        colorListDiv.innerHTML = "<h6>使用的颜色列表:</h6>";
+        colorListDiv.style.display = "flex";
+        colorListDiv.style.flexDirection = "column";
+        colorList.forEach(color => {
+            const colorDiv = document.createElement("div");
+            colorDiv.style.display = "block";
+            colorDiv.style.width = "50px";
+            colorDiv.style.height = "50px";
+            colorDiv.style.backgroundColor = `${color}`;
+            colorDiv.title = `${color}`;
+            colorListDiv.appendChild(colorDiv);
+        });
+    }
+
+    window.initPyodide = initPyodide;
+    window.makeDot = makeDot;
+
+    // 拦截控制台输出并显示在浮动面板中
+    const originalLog = console.log;
+    const originalError = console.error;
+    const originalWarn = console.warn;
+    const originalInfo = console.info;
+    const originalDebug = console.debug;
+    const consoleDiv = document.getElementById('consoleContent');
+    const toggleButton = document.getElementById('consoleToggle');
+    let isCollapsed = false;
+
+    function addToConsole(type, ...args) {
+        const message = args.join(' ');
+        consoleDiv.innerHTML += `[${type.toUpperCase()}] ${message}<br>`;
+        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+    }
+
+    console.log = function(...args) {
+        originalLog.apply(console, args);
+        addToConsole('log', ...args);
+    };
+
+    console.error = function(...args) {
+        originalError.apply(console, args);
+        addToConsole('error', ...args);
+    };
+
+    console.warn = function(...args) {
+        originalWarn.apply(console, args);
+        addToConsole('warn', ...args);
+    };
+
+    console.info = function(...args) {
+        originalInfo.apply(console, args);
+        addToConsole('info', ...args);
+    };
+
+    console.debug = function(...args) {
+        originalDebug.apply(console, args);
+        addToConsole('debug', ...args);
+    };
+
+    // 折叠/展开功能
+    toggleButton.addEventListener('click', function() {
+        isCollapsed = !isCollapsed;
+        const consoleLog = document.getElementById('consoleLog');
+        if (isCollapsed) {
+            consoleLog.classList.add('collapsed');
+            // consoleDiv.style.display = 'none';
+            toggleButton.textContent = '展开';
+        } else {
+            consoleLog.classList.remove('collapsed');
+            // consoleDiv.style.display = 'block';
+            toggleButton.textContent = '折叠';
+        }
+    });
+</script>
+<button id="initButton" onclick="initPyodide()">Initialize Pyodide</button>
+<br>
+<div id="toolContainer" style="margin-top: 10px;display: none">
+  <input type="file" id="fileInput"/>
+  <br>
+  <label for="colorSize">颜色数量</label><select id="colorSize">
+    <option value="2">2</option>
+    <option value="4" selected>4</option>
+    <option value="8">8</option>
+    <option value="16">16</option>
+  </select>
+  <br>
+  <label for="dotSize">点大小</label><select id="dotSize">
+    <option value="1">1</option>
+    <option value="2" selected>2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <br>
+  <button id="runButton" onclick="makeDot()">Run make_dot()</button>
+  <br>
+  <div>
+    <button
+        onclick="document.getElementById('outputImage').style.display = 'block'; document.getElementById('inputImage').style.display = 'none';">
+      Show Output Image
+    </button>
+    <button
+        onclick="document.getElementById('outputImage').style.display = 'none'; document.getElementById('inputImage').style.display = 'block';">
+      Show Input Image
+    </button>
+  </div>
+  <div style="display: flex; align-items: flex-start;">
+    <div id="imageContainer" style="margin-top: 10px;">
+      <img id="outputImage" alt="Output Image" src="" style="display: none; max-height: 80vh; width: auto;"/>
+      <img id="inputImage" alt="Input Image" src="" style="display: none; max-height: 80vh; width: auto;"/>
+    </div>
+    <div id="colorList" style="margin-top: 10px; margin-left: 10px;">
+
+    </div>
+  </div>
+</div>
+<br>
+
+<div id="consoleLog">
+    <div id="consoleContent"></div>
+    <button id="consoleToggle">折叠</button>
+</div>

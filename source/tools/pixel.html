@@ -25,25 +25,35 @@ banner_img_height: 25
 
 #consoleLog.collapsed #consoleToggle {
     position: absolute;
-    bottom: 0;
+    top: 75%;
     left: 0;
+    transform: translateY(-50%);
     writing-mode: vertical-rl;
     text-orientation: mixed;
     padding: 10px 5px;
     height: auto;
     width: 40px;
-    border-bottom: none;
+    border-bottom: 1px solid #333;
     border-right: 1px solid #333;
-    border-top: 1px solid #333;
+    border-top: none;
 }
 
 #consoleToggle {
+    position: absolute;
+    left: 0;
+    top: 75%;
+    transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.9);
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 5px;
     cursor: pointer;
     font-size: 12px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    height: auto;
+    width: 40px;
+    border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
 

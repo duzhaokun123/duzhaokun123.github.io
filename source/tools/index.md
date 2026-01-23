@@ -13,3 +13,5 @@ redirect_from:
 ## [图片盲水印在线工具](stegonline.html)
 
 ## [CJK 统一文字编码字形测试](cjk.html)
+
+## [生成像素画](pixel.html)

@@ -1,6 +1,6 @@
 info:
   title: 狼的站点
-  subtitle: ''
+  subtitle: 记录没用的东西
   author: 狼(o0kam1)
   url: https://o0kam1.dev
 
@@ -10,7 +10,8 @@ defaults:
 global:
   single_page: false
   website_counter:
-    enable: false
+    enable: true
+    url:
   preloader:
     enable: false
   fonts:
@@ -41,6 +42,9 @@ home_banner:
       bilibili: https://space.bilibili.com/174438027
       zhihu: https://www.zhihu.com/people/du-zhao-kun-92
   title: 狼的站点
+  subtitle:
+    text: ['Loading...']
+    loop: false
   style: fixed
   image:
     light: /img/default.png
@@ -89,6 +93,7 @@ articles:
     dark: atom-one-dark
   word_count:
     min2read: false
+  lazyload: false
 
 colors:
   default_mode: dark

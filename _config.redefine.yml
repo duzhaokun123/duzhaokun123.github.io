@@ -1,0 +1,95 @@
+info:
+  title: 狼的站点
+  subtitle: ''
+  author: 狼(o0kam1)
+  url: https://o0kam1.dev
+
+defaults:
+  avatar: /images/avatar.png
+
+global:
+  single_page: false
+  website_counter:
+    enable: false
+  preloader:
+    enable: false
+  chinese:
+    enable: true
+    family: 'Noto Sans CJK SC'
+  english:
+    enable: true
+    family: 'Noto Sans'
+  scroll_progress:
+    bar: true
+    percentage: false
+  side_tools:
+    gear_rotation: false
+
+home_banner:
+  social_links:
+    enable: true
+    links:
+      github: https://github.com/duzhaokun123
+      twitter: https://twitter.com/duzhaokun123
+      bilibili: https://space.bilibili.com/174438027
+      zhihu: https://www.zhihu.com/people/du-zhao-kun-92
+  title: 狼的站点
+  style: fixed
+  image:
+    light: /img/default.png
+
+navbar:
+  color:
+    left: 'var(--color-gray-500)'
+    right: 'var(--color-gray-500)'
+  links:
+    Home:
+      path: /
+      icon: fa-regular fa-house
+    Tools:
+      path: /tools
+      icon: fa-regular fa-toolbox
+    Donate:
+      path: /donate
+      icon: fa-regular fa-hand-holding-heart
+
+comment:
+  enable: false
+
+footer:
+  runtime: false
+  icon: ""
+
+cdn:
+  enable: true
+  provider: jsdelivr
+
+articles:
+  copyright:
+    default: cc_by_sa
+  code_block:
+    style: simple
+    font:
+      enable: true
+      family: 'Fira Code'
+  author_label:
+    enable: false
+  code_blockhighlight_theme:
+    light: atom-one-light
+    dark: atom-one-dark
+  word_count:
+    min2read: false
+
+#colors:
+#  primary: '#58B2DC'
+
+inject:
+  enable: true
+  head:
+    - |
+     <style>
+       .markdown-body img {
+         max-height: 80vh;
+         width: auto;
+       }
+     </style>

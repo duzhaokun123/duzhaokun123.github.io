@@ -8,8 +8,6 @@ tags:
   - wsl
 ---
 
-# 在 Windows 上同时为 Windows 和 WSL 开发 Flutter 应用
-
 {% note danger %}
 
 这篇文章并不是一个一步到位的配环境教程

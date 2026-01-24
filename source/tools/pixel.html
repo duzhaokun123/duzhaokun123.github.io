@@ -68,12 +68,12 @@ banner_img_height: 25
 }
 </style>
 
-<button id="initButton" onclick="initPyodide()">Initialize Pyodide</button>
+<button id="initButton" class="btn" onclick="initPyodide()">Initialize Pyodide</button>
 <br>
 <div id="toolContainer" style="margin-top: 10px;display: none">
-  <input type="file" id="fileInput" accept="image/*"/>
+  <input type="file" class="btn" id="fileInput" accept="image/*"/>
   <br>
-  <label for="colorSize">颜色数量</label><select id="colorSize">
+  <label for="colorSize">颜色数量</label><select id="colorSize" class="btn">
   <option value="2">2</option>
   <option value="4" selected>4</option>
   <option value="8">8</option>
@@ -82,7 +82,7 @@ banner_img_height: 25
   <option value="32">32</option>
 </select> 越多越慢!
   <br>
-  <label for="dotSize">点大小</label><select id="dotSize">
+  <label for="dotSize">点大小</label><select id="dotSize" class="btn">
   <option value="1">1</option>
   <option value="2" selected>2</option>
   <option value="3">3</option>
@@ -90,15 +90,15 @@ banner_img_height: 25
   <option value="5">5</option>
 </select> 越小越慢!
   <br>
-  <button id="runButton" onclick="makeDot()">Run make_dot()</button>
+  <button id="runButton" class="btn" onclick="makeDot()">Run make_dot()</button>
   <br>
   <div>
-    <button
-        onclick="document.getElementById('outputImage').style.display = 'block'; document.getElementById('inputImage').style.display = 'none';">
+    <button class="btn"
+            onclick="document.getElementById('outputImage').style.display = 'block'; document.getElementById('inputImage').style.display = 'none';">
       Show Output Image
     </button>
-    <button
-        onclick="document.getElementById('outputImage').style.display = 'none'; document.getElementById('inputImage').style.display = 'block';">
+    <button class="btn"
+            onclick="document.getElementById('outputImage').style.display = 'none'; document.getElementById('inputImage').style.display = 'block';">
       Show Input Image
     </button>
   </div>
@@ -204,7 +204,7 @@ async function initPyodide() {
     const micropip = pyodide.pyimport("micropip");
     await micropip.install(["opencv-python", "Pillow", "numpy"]);
     console.log("Loading pixel.py script...");
-    const pixel_py = await fetch("./pixel.py").then((response) => response.text());
+    const pixel_py = await fetch("/py/pixel.py").then((response) => response.text());
     pyodide.runPython(pixel_py)
     console.log("Loaded pixel.py script.");
     console.log("Pyodide initialized and packages installed.");

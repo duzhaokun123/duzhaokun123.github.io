@@ -3,6 +3,16 @@ title: CJK 统一文字编码字形测试
 banner_img_height: 25
 description: CJK 统一文字编码字形测试
 ---
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<!--<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+VN:wght@100..900&display=swap" rel="stylesheet">-->
+
 <style>
     table {
         width: 100%;
@@ -21,6 +31,25 @@ description: CJK 统一文字编码字形测试
     span {
         font-size: 20px;
     }
+
+    .font_zh-cn {
+        font-family: 'Noto Sans SC', 'Noto Sans CJK SC', sans-serif;
+    }
+    .font_zh-tw {
+        font-family: 'Noto Sans TC', 'Noto Sans CJK TC', sans-serif;
+    }
+    .font_zh-hk {
+        font-family: 'Noto Sans HK', 'Noto Sans CJK HK', sans-serif;
+    }
+    .font_ja-jp {
+        font-family: 'Noto Sans JP', 'Noto Sans CJK JP', sans-serif;
+    }
+    .font_ko-kr {
+        font-family: 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif;
+    }
+    /*.font_vi-hani {*/
+    /*    font-family: 'Noto Sans VN', 'Noto Sans CJK VN', sans-serif;*/
+    /*}*/
 </style>
 <table>
     <tr>
@@ -29,27 +58,27 @@ description: CJK 统一文字编码字形测试
     </tr>
     <tr>
         <td>大陆 (zh-cn)</td>
-        <td><span lang="zh-cn" id="output-1"></span></td>
+        <td><span lang="zh-cn" id="output-1" class="font_zh-cn"></span></td>
     </tr>
     <tr>
         <td>台湾 (zh-tw)</td>
-        <td><span lang="zh-tw" id="output-2"></span></td>
+        <td><span lang="zh-tw" id="output-2" class="font_zh-tw"></span></td>
     </tr>
     <tr>
         <td>香港 (zh-hk)</td>
-        <td><span lang="zh-hk" id="output-3"></span></td>
+        <td><span lang="zh-hk" id="output-3" class="font_zh-hk"></span></td>
     </tr>
     <tr>
-        <td>日文 (ja)</td>
-        <td><span lang="ja" id="output-4"></span></td>
+        <td>日文 (ja-jp)</td>
+        <td><span lang="ja-jp" id="output-4" class="font_ja-jp"></span></td>
     </tr>
     <tr>
-        <td>韩文 (ko)</td>
-        <td><span lang="ko" id="output-5"></span></td>
+        <td>韩文 (ko-kr)</td>
+        <td><span lang="ko-kr" id="output-5" class="font_ko-kr"></span></td>
     </tr>
     <tr>
         <td>越文 (vi-hani)</td>
-        <td><span lang="vi-hani" id="output-6"></span></td>
+        <td><span lang="vi-hani" id="output-6" class="font_vi-hani"></span></td>
     </tr>
     注：不是所有网页浏览器均可分辨全部HTML的语言代码（Language Code）并使用不同字形。如非某一地区的用户看到的字形和当地通用的字形一样，表示该用户的浏览器不能分辨此标签，或设置两者以同一种字形显示。
     <script>

@@ -13,12 +13,19 @@ global:
     enable: false
   preloader:
     enable: false
-  chinese:
-    enable: true
-    family: 'Noto Sans CJK SC'
-  english:
-    enable: true
-    family: 'Noto Sans'
+  fonts:
+    chinese:
+      enable: true
+      family: 'Noto Sans SC'
+      url: https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap
+    english:
+      enable: true
+      family: 'Noto Sans'
+      url: https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap
+    title:
+      enable: true
+      family: 'Noto Sans SC'
+#      url: https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap
   scroll_progress:
     bar: true
     percentage: false
@@ -37,11 +44,13 @@ home_banner:
   style: fixed
   image:
     light: /img/default.png
+    dark: /img/default.png
 
 navbar:
   color:
-    left: 'var(--color-gray-500)'
-    right: 'var(--color-gray-500)'
+    left: 'var(--background-color-transparent-80)'
+    right: 'var(--background-color-transparent-80)'
+    transparency:
   links:
     Home:
       path: /
@@ -72,6 +81,7 @@ articles:
     font:
       enable: true
       family: 'Fira Code'
+      url: https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap
   author_label:
     enable: false
   code_blockhighlight_theme:
@@ -80,16 +90,17 @@ articles:
   word_count:
     min2read: false
 
-#colors:
-#  primary: '#58B2DC'
+colors:
+  default_mode: dark
+  primary: '#B9887D'
 
 inject:
   enable: true
   head:
     - |
-     <style>
-       .markdown-body img {
-         max-height: 80vh;
-         width: auto;
-       }
-     </style>
+      <style>
+        .markdown-body img {
+          max-height: 80vh;
+          width: auto;
+        }
+      </style>

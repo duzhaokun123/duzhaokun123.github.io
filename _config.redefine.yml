@@ -11,7 +11,7 @@ global:
   single_page: false
   website_counter:
     enable: true
-    url:
+    url: "about:blank"
   preloader:
     enable: false
   fonts:
@@ -109,3 +109,15 @@ inject:
           width: auto;
         }
       </style>
+  footer:
+    - |
+      <div style="
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      " onclick="try{zaraz.showConsentModal()}catch(e){alert('不可用')}">
+        <img src="https://r2.o0kam1.dev/Privacyoptions.svg" style="height: 15px" alt="Cookie Options">
+        &nbsp;&nbsp;
+        <a href="javascript:void(0);">Cookie 选项</a>
+      </div>

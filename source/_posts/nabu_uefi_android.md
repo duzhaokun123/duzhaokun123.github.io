@@ -7,8 +7,6 @@ tags:
   - nabu
 ---
 
-# Xiaomi Pad 5 (nabu) 从 UEFI 启动 Android
-
 {% note info %}
 
 虽然目标设备是 nabu, 但我们尽可能把它写得通用

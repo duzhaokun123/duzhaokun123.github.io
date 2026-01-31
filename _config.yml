@@ -95,11 +95,15 @@ theme: redefine
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo: https://github.com/duzhaokun123/duzhaokun123.github.io
-  # example, https://github.com/hexojs/hexojs.github.io
-  branch: gh-pages
-
+#  type: git
+#  repo: https://github.com/duzhaokun123/duzhaokun123.github.io
+#  # example, https://github.com/hexojs/hexojs.github.io
+#  branch: gh-pages
+  - type: ipfs
+    path: ./public
+    host: 100.119.103.58 # dc0 zerotier ip
+    port: 5001
+    protocol: http
 redirect:
   enable: true
 
@@ -113,3 +117,21 @@ image_minifier:
   interlaced: false
   multipass: false
   optimizationLevel: 7
+
+# RSS Feed
+feed:
+  enable: true
+  type:
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: '...'
+  order_by: -date
+  icon: /images/avatar.png
+  autodiscovery: true

@@ -15,7 +15,7 @@ n4 = np.array([[0, 1, 0],
               np.uint8)
 
 
-def make_dot(k=3, scale=2, color=True, blur=0, erode=0, alpha=True, to_tw=True):
+def make_dot(k=3, scale=2, dither=False, color=True, blur=0, erode=0, alpha=True, to_tw=True):
     img_pl = Image.open("/tmp/input_image")
     if (img_pl.mode == 'RGBA' or img_pl.mode == 'P') and alpha:
         if img_pl.mode != 'RGBA':
@@ -61,8 +61,23 @@ def make_dot(k=3, scale=2, color=True, blur=0, erode=0, alpha=True, to_tw=True):
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
     ret, label, center = cv2.kmeans(img_cp, k, None, criteria, 10, cv2.KMEANS_PP_CENTERS)
     center = center.astype(np.uint8)
-    result = center[label.flatten()]
-    result = result.reshape((img.shape))
+    if dither and color:
+        pil_img = Image.fromarray(img)
+        palette_list = []
+        for c in center:
+            palette_list.extend(c.tolist())
+        while len(palette_list) < 768:
+            palette_list.append(0)
+
+        palette_img = Image.new('P', (1, 1))
+        palette_img.putpalette(palette_list)
+
+        quantized_pil = pil_img.quantize(palette=palette_img, dither=Image.FLOYDSTEINBERG)
+        quantized_pil = quantized_pil.convert('RGB')
+        result = np.array(quantized_pil)
+    else:
+        result = center[label.flatten()]
+        result = result.reshape((img.shape))
     result = cv2.resize(result, (d_w * scale, d_h * scale), interpolation=cv2.INTER_NEAREST)
     if alpha_mode:
         r, g, b = cv2.split(result)

@@ -64,7 +64,7 @@ importers:
         version: 1.9.8(nunjucks@3.2.4(chokidar@3.6.0))
       hexo-theme-redefine:
         specifier: ^2.8.5
-        version: 2.8.5
+        version: 2.9.0
       hexo-wordcount:
         specifier: ^6.0.1
         version: 6.0.1
@@ -1275,8 +1275,8 @@ packages:
     peerDependencies:
       nunjucks: ^3.0.0
 
-  hexo-theme-redefine@2.8.5:
-    resolution: {integrity: sha512-HhAmhGdJSWe+ZjpttM9MLNvJBhmOQFSnIty0oQv2OUoj1613V54V2c+eTjAEZGTMh5eYNP3P4OaJtw8W19N1MQ==}
+  hexo-theme-redefine@2.9.0:
+    resolution: {integrity: sha512-rKsxBPwdJ95kitOqNTLVhY6Wh0mN/5elbDmR5GcrLYrVsZhhY+f1vmgyptUPhkMWp0NiwzrXc4QSkbncfN+vWg==}
 
   hexo-util@2.7.0:
     resolution: {integrity: sha512-hQM3h34nhDg0bSe/Tg1lnpODvNkz7h2u0+lZGzlKL0Oufp+5KCAEUX9wal7/xC7ax3/cwEn8IuoU75kNpZLpJQ==}
@@ -2298,7 +2298,6 @@ packages:
   promisify-es6@1.0.3:
     resolution: {integrity: sha512-N9iVG+CGJsI4b4ZGazjwLnxErD2d9Pe4DPvvXSxYA9tFNu8ymXME4Qs5HIQ0LMJpNM7zj+m0NlNnNeqFpKzqnA==}
     deprecated: Unmaintained
-    bundledDependencies: []
 
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
@@ -4520,7 +4519,7 @@ snapshots:
     dependencies:
       nunjucks: 3.2.4(chokidar@3.6.0)
 
-  hexo-theme-redefine@2.8.5: {}
+  hexo-theme-redefine@2.9.0: {}
 
   hexo-util@2.7.0:
     dependencies:

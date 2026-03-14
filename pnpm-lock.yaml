@@ -61,7 +61,7 @@ importers:
         version: 3.0.0
       hexo-theme-fluid:
         specifier: ^1.9.8
-        version: 1.9.8(nunjucks@3.2.4(chokidar@3.6.0))
+        version: 1.9.9(nunjucks@3.2.4(chokidar@3.6.0))
       hexo-theme-redefine:
         specifier: ^2.9.0
         version: 2.9.0
@@ -1269,8 +1269,8 @@ packages:
     resolution: {integrity: sha512-u4s0ty9Aew6jV+a9oMrXBwhrRpUQ0U8PWM/88a5aHgDru58VY81mVrxOFxs788NAsWQ8OvsJtF5m7mnXoRnSIA==}
     engines: {node: '>=12.13.0'}
 
-  hexo-theme-fluid@1.9.8:
-    resolution: {integrity: sha512-+HUx8xrBA2WWgJYMhlCy5L69LLgAL8PjsLIyIbh81Ftc0J71V69K04Zqv270VjRSs38rx9djeQPrgidtMdnh3g==}
+  hexo-theme-fluid@1.9.9:
+    resolution: {integrity: sha512-Z1EgMiIOeVpaNYQsjUi1PWIA9li/7bkUK+WEL8ehV5uj7nU3VjkAPqSrJDCLV4fDdwFX8HBDM3CaNfl14VKx3g==}
     engines: {node: '>=8.10.0'}
     peerDependencies:
       nunjucks: ^3.0.0
@@ -2298,7 +2298,6 @@ packages:
   promisify-es6@1.0.3:
     resolution: {integrity: sha512-N9iVG+CGJsI4b4ZGazjwLnxErD2d9Pe4DPvvXSxYA9tFNu8ymXME4Qs5HIQ0LMJpNM7zj+m0NlNnNeqFpKzqnA==}
     deprecated: Unmaintained
-    bundledDependencies: []
 
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
@@ -4516,7 +4515,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  hexo-theme-fluid@1.9.8(nunjucks@3.2.4(chokidar@3.6.0)):
+  hexo-theme-fluid@1.9.9(nunjucks@3.2.4(chokidar@3.6.0)):
     dependencies:
       nunjucks: 3.2.4(chokidar@3.6.0)
 

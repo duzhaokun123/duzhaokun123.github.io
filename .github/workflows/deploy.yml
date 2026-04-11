@@ -30,7 +30,7 @@ jobs:
           version: latest
           cache: true
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts=false
+        run: pnpm install --frozen-lockfile --dangerously-allow-all-builds
       - name: Build
         run: pnpm run build --config _config.yml,_config.o0kam1_dev.yml
       - name: Setup Pages

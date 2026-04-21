@@ -34,13 +34,6 @@
     "hexo-wordcount": "^6.0.1"
   },
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "gifsicle",
-      "hexo-util",
-      "jpegtran-bin",
-      "mozjpeg",
-      "optipng-bin",
-      "pngquant-bin"
-    ]
+    "dangerouslyAllowAllBuilds": true
   }
 }

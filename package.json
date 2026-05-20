@@ -15,8 +15,6 @@
     "hexo": "^8.1.2",
     "hexo-admonition": "^1.1.2",
     "hexo-all-minifier": "^0.5.7",
-    "hexo-deployer-git": "^4.0.0",
-    "hexo-deployer-ipfs": "^1.0.13",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^4.0.0",
@@ -32,6 +30,10 @@
     "hexo-theme-fluid": "^1.9.9",
     "hexo-theme-redefine": "^2.9.0",
     "hexo-wordcount": "^6.0.1"
+  },
+  "devDependencies": {
+    "hexo-deployer-git": "^4.0.0",
+    "hexo-deployer-ipfs": "^1.0.13"
   },
   "pnpm": {
     "dangerouslyAllowAllBuilds": true

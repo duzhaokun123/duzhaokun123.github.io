@@ -33,8 +33,5 @@
   },
   "devDependencies": {
     "hexo-deployer-git": "^4.0.0"
-  },
-  "pnpm": {
-    "dangerouslyAllowAllBuilds": true
   }
 }

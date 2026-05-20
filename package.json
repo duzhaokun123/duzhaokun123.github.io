@@ -36,6 +36,9 @@
     "hexo-deployer-ipfs": "^1.0.13"
   },
   "pnpm": {
-    "dangerouslyAllowAllBuilds": true
+    "dangerouslyAllowAllBuilds": true,
+    "settings": {
+      "blockExoticSubdeps": false
+    }
   }
 }

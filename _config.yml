@@ -99,11 +99,11 @@ deploy:
 #  repo: https://github.com/duzhaokun123/duzhaokun123.github.io
 #  # example, https://github.com/hexojs/hexojs.github.io
 #  branch: gh-pages
-  - type: ipfs
-    path: ./public
-    host: 100.119.103.58 # dc0 zerotier ip
-    port: 5001
-    protocol: http
+#  - type: ipfs
+#    path: ./public
+#    host: 100.119.103.58 # dc0 zerotier ip
+#    port: 5001
+#    protocol: http
 redirect:
   enable: true
 

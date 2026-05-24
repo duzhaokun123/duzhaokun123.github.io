@@ -112,8 +112,7 @@ inject:
           width: auto;
         }
       </style>
-    - |
-      <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    # eruda: keep it opt-in via footer button to avoid hurting performance metrics
   footer:
     - |
       <div style="
@@ -126,5 +125,13 @@ inject:
         &nbsp;&nbsp;
         <a href="javascript:void(0);" onclick="try{zaraz.showConsentModal()}catch(e){alert('不可用')}">Cookie 选项</a>
         &nbsp;&nbsp;
-        <a href="javascript:void(0);" onclick="eruda.init();">加载 Eruda</a>
+        <a href="javascript:void(0);" onclick="(function(){
+          function init(){ try { eruda.init(); } catch (e) { alert('不可用'); } }
+          if (window.eruda) return init();
+          var s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/eruda';
+          s.onload = init;
+          s.onerror = function(){ alert('不可用'); };
+          document.head.appendChild(s);
+        })();">加载 Eruda</a>
       </div>

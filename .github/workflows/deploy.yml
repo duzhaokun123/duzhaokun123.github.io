@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         env:
           NODE_ENV: production
-        run: pnpm install ---no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
       - name: Build
         run: pnpm run build --config _config.yml,_config.o0kam1_dev.yml
       - name: Setup Pages

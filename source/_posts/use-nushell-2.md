@@ -6,7 +6,7 @@ excerpt: 在更多的环境比如 Termux
 ---
 
 {% note info %}
-上一篇文章 [使用 Nushell 获取好像挺跨平台的 shell 体验](http://localhost:4000/2023/11/28/use-nushell-1.html)
+上一篇文章 {% post_link use-nushell-1 %}
 {% endnote %}
 
 ## 引言

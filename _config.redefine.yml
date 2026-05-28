@@ -6,6 +6,7 @@ info:
 
 defaults:
   avatar: /images/avatar.png
+  favicon: /favicon.ico
 
 global:
   single_page: false
@@ -35,15 +36,23 @@ global:
     percentage: false
   side_tools:
     gear_rotation: false
+  open_graph:
+    enable: false
+    description: "记录没用的东西"
+    image: "about:blank"
 
 home_banner:
   social_links:
     enable: true
     links:
-      github: https://github.com/duzhaokun123
-      twitter: https://twitter.com/duzhaokun123
-      bilibili: https://space.bilibili.com/174438027
-      zhihu: https://www.zhihu.com/people/du-zhao-kun-92
+      - icon: github
+        url: https://github.com/duzhaokun123
+      - icon: twitter
+        url: https://twitter.com/duzhaokun123
+      - icon: bilibili
+        url: https://space.bilibili.com/174438027
+      - icon: zhihu
+        url: https://www.zhihu.com/people/du-zhao-kun-92
   title: 狼的站点
   subtitle:
     text: ['Loading...']

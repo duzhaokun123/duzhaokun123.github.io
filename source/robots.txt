@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://o0kam1.dev/stiemap.xml
+Sitemap: https://o0kam1.dev/sitemap.xml

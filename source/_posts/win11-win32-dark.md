@@ -14,7 +14,7 @@ tags: windows
 {% endnote %}
     
 
-Win32(UxTheme) 应用在 Windows 上就什么官方暗色支持
+Win32(UxTheme) 应用在 Windows 上就没什么官方暗色支持
 
 比如微软这篇文档 [Support Dark and Light themes in Win32 apps (Archive)](https://web.archive.org/web/20250221212657/https://learn.microsoft.com/en-us/windows/apps/desktop/modernize/ui/apply-windows-themes) 连一个判断是否暗色主题的 API 都没有
 

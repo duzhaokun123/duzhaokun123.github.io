@@ -72,10 +72,10 @@ navbar:
       path: /
       icon: fa-regular fa-house
     Tools:
-      path: /tools
+      path: /tools/index.html
       icon: fa-regular fa-toolbox
     Donate:
-      path: /donate
+      path: /donate/index.html
       icon: fa-regular fa-hand-holding-heart
 
 comment:
@@ -86,8 +86,7 @@ footer:
   icon: ""
 
 cdn:
-  enable: true
-  provider: jsdelivr
+  enable: false
 
 articles:
   copyright:

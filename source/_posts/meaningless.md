@@ -14,6 +14,8 @@ tags: []
 
 ## 没有意义的章节标题
 
+![badge: meaningless](https://img.shields.io/badge/badge-meaningless-brightgreen?style=flat-square)
+
 没有意义的正文
 
 meaningless worlds in English

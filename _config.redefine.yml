@@ -86,7 +86,8 @@ footer:
   icon: ""
 
 cdn:
-  enable: false
+  enable: true
+  provider: jsdelivr
 
 articles:
   copyright:

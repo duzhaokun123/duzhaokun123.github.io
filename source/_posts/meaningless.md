@@ -22,7 +22,7 @@ meaningless worlds in English
 無意味な言葉も日本語で
 </span>
 
-<img class="ipfs-img" src="ipfs://bafybeicuqfyptcehuccbxnbelgmd3dkbehrvpw7jmq6qb4asyzfinewfii" alt="meaningless content from ipfs">
+<img class="ipfs-img" src="ipfs://bafybeidwf6cxcxz4w7gyhx5l6wud5qiec2iql5lq56ukteeg3ndbidznqm" alt="meaningless content from ipfs">
 
 <bilibili-card 
   vid="BV1GJ411x7h7"

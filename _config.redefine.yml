@@ -121,7 +121,6 @@ inject:
           width: auto;
         }
       </style>
-    # eruda: keep it opt-in via footer button to avoid hurting performance metrics
   footer:
     - |
       <div style="
@@ -143,4 +142,6 @@ inject:
           s.onerror = function(){ alert('不可用'); };
           document.head.appendChild(s);
         })();">加载 Eruda</a>
+        &nbsp;&nbsp;
+        <a href="/about/index.html">关于</a>
       </div>

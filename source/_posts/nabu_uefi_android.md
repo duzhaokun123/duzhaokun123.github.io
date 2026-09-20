@@ -2,6 +2,7 @@
 title: Xiaomi Pad 5 (nabu) 从 UEFI 启动 Android
 date: 2025-04-23T05:22:52+08:00
 excerpt: 鉴定为 吃饱了撑的
+description: 在 Android 硬件上启动 Android 系统 
 tags:
   - android
   - nabu

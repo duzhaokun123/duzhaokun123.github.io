@@ -2,6 +2,7 @@
 title: "西安石油大学(XSYU) 教务系统课表导入小爱课程表"
 date: 2023-02-18
 excerpt: 比没有好
+description: 比没有好
 tags:
   - XSYU
   - AI_schedule

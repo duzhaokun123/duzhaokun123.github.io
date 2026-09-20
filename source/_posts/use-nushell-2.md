@@ -3,6 +3,7 @@ title: 用更多的 Nushell
 date: 2023-11-28 14:47:09
 tags: [nushell, tools]
 excerpt: 在更多的环境比如 Termux
+description: 在更多的环境比如 Termux
 ---
 
 {% note info %}

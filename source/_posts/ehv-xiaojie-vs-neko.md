@@ -2,6 +2,7 @@
 title: "EhViewer: xiaojieonly VS. NekoInverter"
 date: 2021-11-17
 excerpt: 已过时 已实际体验为准
+description: 已过时 已实际体验为准
 tags:
   - ehviewer
   - outdated

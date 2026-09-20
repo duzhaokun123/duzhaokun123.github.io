@@ -2,6 +2,7 @@
 title: "西安石油大学(XSYU) 教务系统课表导入小爱课程表"
 date: 2022-9-27
 excerpt: 已过时的
+description: 已过时的
 tags:
   - XSYU
   - AI_schedule

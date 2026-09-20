@@ -3,6 +3,7 @@ title: Windows 窗口截图带透明通道
 date: 2023-12-04 21:00:55
 tags: [ windows, tools, ]
 excerpt: 猜测出来的 (
+description: 算 alpha
 ---
 
 ## 起因

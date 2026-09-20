@@ -3,6 +3,7 @@ title: 缓解坏了的 wlan
 date: 2023-12-20 04:11:54
 tags: [android]
 excerpt: "tun socks5 in adb/usb :thinking:"
+description: 烧 wifi 了
 ---
 
 ## 起因

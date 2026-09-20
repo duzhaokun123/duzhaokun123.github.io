@@ -2,6 +2,7 @@
 title: "YAYAMF 开发记录(一)"
 date: 2023-08-11
 excerpt: TL;DR 浪费时间
+description: TL;DR 浪费时间
 tags:
   - YAMF
   - YAYAMF

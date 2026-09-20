@@ -3,6 +3,7 @@ title: 缓解坏了的 wlan (2)
 date: 2023-12-20 09:32:19
 tags: [android]
 excerpt: 好像解决 system anr 了
+description: 烧 wifi 了
 ---
 
 ## 过程

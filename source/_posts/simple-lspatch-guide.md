@@ -3,6 +3,7 @@ title: "简单的 LSPatch 使用教程"
 date: 2022-05-06
 last_update: "2022.6.1 17:58 UTC+08:00"
 excerpt: 这只是一个简单的教程
+description: 这只是一个简单的教程
 tags: lspatch 
 ---
 

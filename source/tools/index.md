@@ -4,6 +4,7 @@ banner_img_height: 40
 banner_mask_alpha: 0.5
 redirect_from:
     - /tools.html
+description: 一些工具
 ---
 
 ## [MMPI 即时出分版](https://duzhaokun123.github.io/MMPI/)

@@ -2,6 +2,7 @@
 title: Windows 11 上的 Win32(UxTheme) 应用全局暗色
 date: 2025-03
 excerpt: 使用高对比度主题 (划掉)
+description: 改系统文件
 tags: windows
 ---
 

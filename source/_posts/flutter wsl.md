@@ -2,6 +2,7 @@
 title: 在 Windows 上同时为 Windows 和 WSL 开发 Flutter 应用
 date: 2025-04-09T03:27:13+08:00
 excerpt: 不好用
+description: wsl 主机路径挂载
 tags:
   - flutter
   - windows

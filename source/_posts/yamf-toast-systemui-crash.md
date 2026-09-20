@@ -2,6 +2,7 @@
 title: "VirtualDisplay 实现的小窗 与 toast 窗口 与 systemui 崩溃"
 date: 2023-02-23
 excerpt: TL;DR 加上`VIRTUAL_DISPLAY_FLAG_PUBLIC`
+description: TL;DR 加上`VIRTUAL_DISPLAY_FLAG_PUBLIC`
 tags:
   - YAMF
   - VirtualDisplay

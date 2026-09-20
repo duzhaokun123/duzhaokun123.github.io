@@ -3,6 +3,7 @@ title: 关于
 layout: about
 redirect_from:
   - /about.html
+description: 关于 o0kam1
 ---
 
 狼的站点 [狼狼云](https://alist.o0kam1.dev/) [狼 Git](https://git.o0kam1.dev/)

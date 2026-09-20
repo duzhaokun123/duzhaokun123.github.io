@@ -12,6 +12,7 @@ tags: []
 <script src="https://cdn.jsdelivr.net/npm/@helia/verified-fetch@8/dist/index.min.js"></script>
 <script async type="module" src="https://cdn.jsdelivr.net/npm/bilibili-card/dist/components/index.js"></script>
 <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@cloudflare/ai-search-snippet/dist/search-snippet.es.js"></script>
 
 ## 没有意义的章节标题
 
@@ -24,6 +25,14 @@ meaningless worlds in English
 <span lang="ja">
 無意味な言葉も日本語で
 </span>
+
+<search-bar-snippet
+  style="z-index: 100; position: relative;"
+  api-url="https://74175487-8543-4d54-a7d1-d4b536690042.search.ai.cloudflare.com/"
+  placeholder="没有意义的 AI 搜索 (你可以用它浪费公共资源)"
+  show-url="true"
+  show-date="true">
+</search-bar-snippet>
 
 <img class="ipfs-img" src="ipfs://bafybeidwf6cxcxz4w7gyhx5l6wud5qiec2iql5lq56ukteeg3ndbidznqm" alt="meaningless content from ipfs">
 

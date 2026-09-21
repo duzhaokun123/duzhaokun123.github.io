@@ -28,7 +28,7 @@ meaningless worlds in English
 
 <search-bar-snippet
   style="z-index: 100; position: relative;"
-  api-url="https://74175487-8543-4d54-a7d1-d4b536690042.search.ai.cloudflare.com/"
+  api-url="https://0a8eac8c-415e-42c0-bc0e-84161976f36d.search.ai.cloudflare.com"
   placeholder="没有意义的 AI 搜索 (你可以用它浪费公共资源)"
   show-url="true"
   show-date="true">

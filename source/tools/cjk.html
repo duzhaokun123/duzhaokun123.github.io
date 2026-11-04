@@ -4,13 +4,4 @@ banner_img_height: 25
 description: CJK 统一文字编码字形测试
 ---
 
-<iframe id="tool" style="width: 100%; height: 350px"></iframe>
-
-<script>
-const tool = document.getElementById('tool');
-fetch("cjk.txt")
-    .then(resp => resp.text())
-    .then(text => {
-        tool.srcdoc = text
-    })
-</script>
+<iframe src="/raw/cjk_iframe.html" style="width: 100%; height: 350px"></iframe>
